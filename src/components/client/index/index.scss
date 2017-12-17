@@ -1,0 +1,64 @@
+@charset "UTF-8";
+#wrapper{
+	div{
+		position:relative;
+		z-index:50;
+	}
+	#content{
+		position:fixed;
+		padding:5px 10px;
+		top:30%;
+	    right: 0;
+	    left: 0;
+		text-align:center;
+		#name{
+			margin:12px 0;
+			h1{
+				font-weight: 700;
+				font-size: 30px;
+				letter-spacing: 9px;
+				font-style: italic;
+				font-family: 华文新魏;
+			}
+		}
+		#saying{
+			h2{
+				height:15px;
+				color: #999;
+				margin-bottom: 20px;
+			    font-weight: normal;
+			    font-size: 15px;
+			    letter-spacing: .12em;
+			    font-style: italic;
+			}
+		}
+		#navigation{
+			color: #999;
+			font-size: 14px;
+			line-height: 2em;
+			margin: 0;
+			letter-spacing: 2px;
+			p{
+				cursor:pointer;
+				span{
+					display:inline-block;
+					padding:3px 10px;
+					border:1px transparent solid;
+					border-radius:5px;
+					transition:0.5s;
+					a{
+						display:inline-block;
+						color: #999;
+					}
+				}
+				span:hover{
+					box-shadow:2px 2px 10px gray;
+					color:#f33;
+					a{
+						color:#f33;
+					}
+				}
+			}
+		}
+	}
+}
