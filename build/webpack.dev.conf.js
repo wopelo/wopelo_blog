@@ -57,7 +57,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       app.post("/api/check",bodyParser.json(),function(req,res){
           let check=require("../api/server/checkCode.js");
           check(req.body.code,res);
-      })
+      });
+      // app.post("/api/modifySaying",bodyParser.json(),function(req,res){
+          
+      // })
     }
   },
   plugins: [

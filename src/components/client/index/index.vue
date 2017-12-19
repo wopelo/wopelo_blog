@@ -49,7 +49,8 @@
 		},
 		created(){
 		  this.$axios.get("/api/saying").then(res=>{
-		    this.saying=res.data[0].saying;
+		  	console.log(res.data)
+		    this.saying=res.data.saying;
 		  });
 		},
 		components:{

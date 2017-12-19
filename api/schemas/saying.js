@@ -9,6 +9,9 @@ let saying=new mongoose.Schema({
 saying.statics={
 	findSaying(callback){
 		this.find({},callback);
+	},
+	modify(newSaying,callback){
+		this.update({},{$set:{saying:num}},callback);
 	}
 }
 

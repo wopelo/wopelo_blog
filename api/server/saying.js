@@ -1,4 +1,4 @@
-let saying=require("../models/saying.js");
+let saying=require("../models/user.js");
 let findSaying=function(res){
 	let result;
 	saying.findSaying(function(err,data){
@@ -7,7 +7,7 @@ let findSaying=function(res){
 		}else if(data.length==0){
 			result={"error":"他居然一句话也没有说~"};
 		}else{
-			result=data;
+			result={"saying":data[0].saying}
 		}
 		res.statusCode=200;
 		res.setHeader("Content-Type","text/plain");

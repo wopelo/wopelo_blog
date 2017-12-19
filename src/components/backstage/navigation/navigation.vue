@@ -12,22 +12,22 @@
 		</div>
 		<div id="list">
 			<div class="option">
-				<router-link to="/editor/saying">修改一句话</router-link>
+				<router-link to="/backstage/editor/saying">修改一句话</router-link>
 			</div>
 			<div class="option">
-				<router-link to="/blog">博客总览</router-link>
+				<router-link to="/backstage/blog">博客总览</router-link>
 			</div>
 			<div class="option">
-				<router-link to="/type">类别管理</router-link>
+				<router-link to="/backstage/type">类别管理</router-link>
 			</div>
 			<div class="option">
-				<router-link to="/manage">管理博客</router-link>
+				<router-link to="/backstage/manage">管理博客</router-link>
 			</div>
 			<div class="option">
-				<router-link to="/comment">管理评论</router-link>
+				<router-link to="/backstage/comment">管理评论</router-link>
 			</div>
 			<div class="option">
-				<router-link to="/editor/publish">发表博客</router-link>
+				<router-link to="/backstage/editor/publish">发表博客</router-link>
 			</div>
 			<div class="option" id="top">
 				<a v-on:click="backTop">返回顶部</a>
@@ -42,45 +42,12 @@
 </template>
 
 <script>
-	import VueRouter from 'vue-router'
-	import editor from "../editor/editor.vue";
-	import blog from "../blog/blog.vue";
-	import type from "../type/type.vue";
-	import manage from "../manage/manage.vue";
-	import comment from "../comment/comment.vue";
-
-	let router=new VueRouter({
-		routes:[
-			{
-				path:"/editor/:id",
-				component:editor,
-				props:true
-			},
-			{
-				path:"/blog",
-				component:blog
-			},
-			{
-				path:"/type",
-				component:type
-			},
-			{
-				path:"/manage",
-				component:manage
-			},
-			{
-				path:"/comment",
-				component:comment
-			}
-		]
-	})
 	export default {
 		data(){
 			return {
 				code:""
 			}
 		},
-		router,
 		created(){
 			//身份验证
 		  	let admin=sessionStorage.getItem("admin");

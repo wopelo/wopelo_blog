@@ -3,7 +3,8 @@ mongoose.Promise=global.Promise;
 let blogUser=new mongoose.Schema({
 	name:String,
 	password:String,
-	code:String
+	code:String,
+	saying:String
 },{
 	collection:"user"
 });
@@ -17,6 +18,12 @@ blogUser.statics={
 	},
 	checkCode(num,callback){
 		this.find({code:num},callback).limit(1);
+	},
+	findSaying(callback){
+		this.find({},callback);
+	},
+	modify(newSaying,callback){
+		this.update({},{$set:{saying:num}},callback);
 	}
 }
 
