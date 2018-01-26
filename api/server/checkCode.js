@@ -4,7 +4,6 @@ let checkCode=function(num,res){
 	User.checkCode(num,function(err,data){
 		if(err){
 			result={"error":err};
-			backClient(res,result);
 		}else if(data.length==0){
 			result={"error":"code不匹配"};
 		}else{

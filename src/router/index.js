@@ -15,11 +15,13 @@ import auth from "../components/backstage/auth/auth.vue"
 // import editor from "../components/backstage/editor/editor.vue"
 //管理首页
 import navigation from "../components/backstage/navigation/navigation.vue"
+import saying from "../components/backstage/saying/saying.vue"
 import editor from "../components/backstage/editor/editor.vue";
 import blogManage from "../components/backstage/blog/blog.vue";
 import type from "../components/backstage/type/type.vue";
 import manage from "../components/backstage/manage/manage.vue";
 import comment from "../components/backstage/comment/comment.vue";
+import aboutManage from "../components/backstage/about/about.vue";
 
 Vue.use(Router)
 
@@ -50,9 +52,8 @@ export default new Router({
           component:navigation,
           children:[
             {
-              path:"/backstage/editor/:id",
-              component:editor,
-              props:true
+              path:"/backstage/saying",
+              component:saying
             },
             {
               path:"/backstage/blog",
@@ -69,6 +70,14 @@ export default new Router({
             {
               path:"/backstage/comment",
               component:comment
+            },
+            {
+              path:"/backstage/editor",
+              component:editor
+            },
+            {
+              path:"/backstage/about",
+              component:aboutManage
             }
           ]
         }

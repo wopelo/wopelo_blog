@@ -1,12 +1,17 @@
 <template>
 	<div>
+		<div id="title">
+			<div id="text">
+				<input type="text" placeholder="标题" v-model="title">
+			</div>
+			<div id="operation">
+				<button v-on:click="submit">Submit</button>
+				<button v-on:click="reset">Reset</button>
+			</div>
+		</div>
 		<div id="editorMenu"></div>
 		<div id="editorElem">
-			<p>{{id}}</p>
-		</div>
-		<div id="operation">
-			<button v-on:click="submit">Submit</button>
-			<button v-on:click="reset">Reset</button>
+			<p>博客内容</p>
 		</div>
 	</div>
 </template>
@@ -15,7 +20,11 @@
 	import E from 'wangeditor'
 	let editor=new E('#editorMenu','#editorElem');
 	export default {
-		props:["id"],
+		data(){
+			return {
+				title:""
+			}
+		},
 		mounted(){
 		  editor.customConfig.onchange=(html)=>{
 		    this.editorContent=html
@@ -25,37 +34,30 @@
 		},
 		methods:{
 			submit(){
-				console.log(this.id);
+				console.log(editor.txt.html());
+				// this.$axios({
+				// 	method:"post",
+				// 	url:"/api/modifySaying",
+				// 	data:{
+				// 		num:sessionStorage.getItem("code"),
+				// 		newSaying:editor.txt.html()
+				// 	}
+				// }).then((res)=>{
+				// 	console.log(res.data);
+				// })
 			},
 			reset(){
-				editor.txt.clear()
+				editor.txt.clear();
+				this.title="";
 			}
 		}
 	}
 </script>
 
 <style lang="scss" rel="text/css">
+	@import '../../../common/css/title.scss';
 	#editorElem{
 		min-height:300px;
-	}
-	#operation{
-		margin-top:10px;
-		text-align:center;
-		button{
-			width: 180px;
-			height: 50px;
-			border:2px solid #999;
-			background-color:transparent;
-			color:#999;
-			cursor:pointer;
-			font-size:18px;
-			font-family:Arial;
-			font-weight:bold;
-			transition:0.5s;
-		}
-		button:hover{
-			color:#fa9fa4;
-			border:2px solid #fa9fa4;
-		}
+		padding:10px;
 	}
 </style>

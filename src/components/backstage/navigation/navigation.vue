@@ -12,7 +12,7 @@
 		</div>
 		<div id="list">
 			<div class="option">
-				<router-link to="/backstage/editor/saying">修改一句话</router-link>
+				<router-link to="/backstage/saying">修改一句话</router-link>
 			</div>
 			<div class="option">
 				<router-link to="/backstage/blog">博客总览</router-link>
@@ -27,7 +27,10 @@
 				<router-link to="/backstage/comment">管理评论</router-link>
 			</div>
 			<div class="option">
-				<router-link to="/backstage/editor/publish">发表博客</router-link>
+				<router-link to="/backstage/editor">发表博客</router-link>
+			</div>
+			<div class="option">
+				<router-link to="/backstage/about">关于我</router-link>
 			</div>
 			<div class="option" id="top">
 				<a v-on:click="backTop">返回顶部</a>

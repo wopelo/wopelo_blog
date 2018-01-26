@@ -1,11 +1,9 @@
-let saying=require("../models/user.js");
-let findSaying=function(res){
+let user=require("../models/user.js");
+let getType=function(res){
 	let result;
-	saying.findSaying(function(err,data){
+	user.getType(function(err,data){
 		if(err){
 			result={"error":err};
-		}else if(data.length==0){
-			result={"saying":"他居然一句话也没有说~"};
 		}else{
 			result=data[0];
 		}
@@ -17,4 +15,4 @@ let findSaying=function(res){
 		res.end();
 	});
 }
-module.exports=findSaying;
+module.exports=getType;
