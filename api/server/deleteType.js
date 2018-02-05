@@ -1,4 +1,6 @@
 let User=require("../models/user.js");
+let checkCode=require("./checkId.js");
+let backClient=require("./backClient.js");
 
 let deleteType=function(num,target,res){
 	checkCode(num).then(()=>{
@@ -8,21 +10,6 @@ let deleteType=function(num,target,res){
 	}).catch((err)=>{
 		backClient(res,err);
 	})
-}
-
-function checkCode(num){
-	let promise=new Promise((resolve,reject)=>{
-		User.checkCode(num,function(err,data){
-			if(err){
-				reject({"error":err});
-			}else if(data.length==0){
-				reject({"error":"code不匹配"});
-			}else{
-				resolve()
-			}
-		})
-	});
-	return promise;
 }
 
 function rewriteType(target){
@@ -36,15 +23,6 @@ function rewriteType(target){
 		});
 	});
 	return promise;
-}
-
-function backClient(res,result){
-	res.statusCode=200;
-	res.setHeader("Content-Type","text/plain");
-	res.setHeader("Access-Control-Allow-Origin","*");
-	res.write(JSON.stringify(result));
-	console.log(result);
-	res.end();
 }
 
 module.exports=deleteType;

@@ -1,4 +1,5 @@
 let User=require("../models/user.js");
+let backClient=require("./backClient.js");
 
 let haveUser=function(name,password,res){
 	Verification(name,password).then((code)=>{
@@ -40,15 +41,6 @@ function makeCode(name,code){
 		})
 	});
 	return promise;
-}
-
-function backClient(res,result){
-	res.statusCode=200;
-	res.setHeader("Content-Type","text/plain");
-	res.setHeader("Access-Control-Allow-Origin","*");
-	res.write(JSON.stringify(result));
-	console.log(result);
-	res.end();
 }
 
 module.exports=haveUser;

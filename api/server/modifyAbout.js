@@ -1,10 +1,10 @@
-let User=require("../models/user.js");
+let About=require("../models/about.js");
 let checkCode=require("./checkId.js");
 let backClient=require("./backClient.js");
 
-let modify=function(num,newSaying,res){
+let modify=function(num,newArticle,res){
 	checkCode(num).then(()=>{
-		return userModify(num,newSaying);
+		return aboutModify(newArticle);
 	}).then((value)=>{
 		backClient(res,value);
 	}).catch((err)=>{
@@ -12,9 +12,9 @@ let modify=function(num,newSaying,res){
 	})
 }
 
-function userModify(num,newSaying){
+function aboutModify(newArticle){
 	let promise=new Promise((resolve,reject)=>{
-		User.modify(num,newSaying,function(err,data){
+		About.modifyAbout(newArticle,function(err,data){
 			if(err){
 				reject({"error":err});
 			}else{

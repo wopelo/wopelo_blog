@@ -4,13 +4,13 @@ mongoose.Promise=global.Promise;
 let message=require("../information.json");
 
 let db=mongoose.createConnection(message.database);
-let userSchema=require("../schemas/user.js");
+let blogSchema=require("../schemas/about.js");
 db.on("error",function(err){
 	console.log(err);
 });
 db.on("open",function(){
-	console.log("user被打开");
+	console.log("about被打开");
 });
-let blogUser=db.model("user",userSchema);
+let blogUser=db.model("about",blogSchema);
 
 module.exports=blogUser;

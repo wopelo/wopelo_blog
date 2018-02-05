@@ -1,7 +1,7 @@
-let user=require("../models/user.js");
-let getType=function(res){
+let about=require("../models/about.js");
+let getAbout=function(res){
 	let result;
-	user.getType(function(err,data){
+	about.getAbout(function(err,data){
 		if(err){
 			result={"error":err};
 		}else{
@@ -14,4 +14,4 @@ let getType=function(res){
 		res.end();
 	});
 }
-module.exports=getType;
+module.exports=getAbout;

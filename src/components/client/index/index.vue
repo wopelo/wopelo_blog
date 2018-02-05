@@ -32,6 +32,11 @@
 				</p>
 				<p>
 					<span>
+						<a href="https://gitee.com/wopelo" target="_blank">码云</a>
+					</span>
+				</p>
+				<p>
+					<span>
 						<router-link to="/about">关于wopelo</router-link>
 					</span>
 				</p>
