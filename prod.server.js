@@ -53,6 +53,16 @@ app.get("/api/getAbout",function(req,res){
 app.post("/api/modifyAbout",bodyParser.json(),function(req,res){
     let modifyAbout=require("./api/server/modifyAbout.js");
     modifyAbout(req.body.code,req.body.newArticle,res);
+});
+//获取博客列表
+app.post("/api/getList",bodyParser.json(),function(req,res){
+    let getList=require("../api/server/getList.js");
+    getList(req.body.jump,res);
+});
+//获取指定博客
+app.post("/api/getBlog",bodyParser.json(),function(req,res){
+    let getBlog=require("../api/server/getBlog.js");
+    getBlog(req.body.target,res);
 })
 
 //定义static目录

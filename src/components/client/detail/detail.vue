@@ -1,0 +1,92 @@
+<template>
+	<div id="detailPage">
+		<div id="detailTitle">
+			{{article.title}}
+		</div>
+		<div id="detailTpye">
+			<span>标签：</span>
+			<span v-for="item in article.type">
+				{{item}}&ensp;
+			</span>
+		</div>
+		<div id="detailTime">
+			<span>{{article.date}}</span>
+			<span>评论({{article.comment}})</span>
+		</div>
+		<div id="detailContent" v-html="article.content"></div>
+	</div>
+</template>
+
+<script>
+	export default {
+		data(){
+			return {
+				id:"",
+				article:""
+			}
+		},
+		created(){
+		  this.id=this.$route.query.id;
+		  this.$axios({
+		  	method:"post",
+		  	url:"/api/getBlog",
+		  	data:{
+		  		target:this.id
+		  	}
+		  }).then((res)=>{
+		  	this.article=res.data[0];
+		  })
+		}
+	}
+</script>
+
+<style lang="scss" rel="text/css">
+	%title{
+		margin:8px 0 16px 0;
+		color:#444;
+	}
+	#detailPage{
+		padding:0 10px;
+		#detailTitle{
+			font-size:2em;
+			margin:8px 0 8px 0;
+		}
+		#detailTpye,#detailTime{
+			margin-bottom:5px;
+			color:#c88326;
+			font-size:12px;
+		}
+		#detailContent{
+			b{
+				font-weight:bold;
+			}
+			h1{
+				font-size:2em;
+				@extend %title;
+			}
+			h2{
+				font-size:1.5em;
+				@extend %title;
+			}
+			h3{
+				font-size:1.17em;
+				@extend %title;
+			}
+			h4{
+				font-size:1em;
+				@extend %title;
+			}
+			h5{
+				font-size:0.83em;
+				@extend %title;
+			}
+			a{
+				color:#f66;
+			}
+			img{
+			    max-width:600px;
+			    height:auto;
+			}
+		}
+	}
+</style>

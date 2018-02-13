@@ -3,8 +3,14 @@ import Router from 'vue-router'
 
 //首页
 import index from "../components/client/index/index.vue"
-//博客列表
+//博客查看
 import blog from "../components/client/blog/blog.vue"
+//博客列表
+import list from "../components/client/list/list.vue"
+//博客总览
+import overview from "../components/client/overview/overview.vue"
+//谋篇博客详细内容
+import detail from "../components/client/detail/detail.vue"
 //关于wopelo
 import about from "../components/client/about/about.vue"
 //后台管理
@@ -33,7 +39,26 @@ export default new Router({
     },
     {
     	path:"/blog",
-    	component:blog
+    	component:blog,
+      children:[
+        {
+          path:"",
+          redirect:"/list"
+        },
+        {
+          path:"/list",
+          component:list,
+        },
+        {
+          path:"/overview",
+          component:overview
+        },
+        {
+          path:"/detail",
+          name:"detail",
+          component:detail
+        }
+      ]
     },
     {
     	path:"/about",
