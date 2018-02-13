@@ -56,12 +56,12 @@ app.post("/api/modifyAbout",bodyParser.json(),function(req,res){
 });
 //获取博客列表
 app.post("/api/getList",bodyParser.json(),function(req,res){
-    let getList=require("../api/server/getList.js");
+    let getList=require("./api/server/getList.js");
     getList(req.body.jump,res);
 });
 //获取指定博客
 app.post("/api/getBlog",bodyParser.json(),function(req,res){
-    let getBlog=require("../api/server/getBlog.js");
+    let getBlog=require("./api/server/getBlog.js");
     getBlog(req.body.target,res);
 })
 
