@@ -69,10 +69,10 @@ app.post("/api/getBlog",bodyParser.json(),function(req,res){
 app.use(express.static("./dist"));
 
 //启动express
-module.exports = app.listen(80, function (err) {
+module.exports = app.listen(82, function (err) {
 	if (err) {
 		console.log(err);
 		return
 	}
-	console.log('Listening at http://localhost:' + 80 + '\n')
+	console.log('Listening at http://localhost:' + 82 + '\n')
 });
