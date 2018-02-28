@@ -19,3 +19,29 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+# 线上地址
+[blog.wopelo.la](http://blog.wopelo.la)
+
+# 目录说明
+
+## api
+后端接口
+
+## prod.server.js
+打包好的项目的启动文件
+
+# 相关操作
+
+``` bash
+# 下载依赖
+npm install --save-dev
+
+# 热重载 端口8080
+npm run dev
+
+# build项目
+npm run build
+
+# 运行打包好的项目 端口82
+node prod.server.js
