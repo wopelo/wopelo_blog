@@ -52,11 +52,16 @@
 			margin:8px 0 8px 0;
 		}
 		#detailTpye,#detailTime{
+			display:inline-block;
 			margin-bottom:5px;
 			color:#c88326;
 			font-size:12px;
 		}
 		#detailContent{
+			line-height:1.8;
+			color:#666;
+			margin-top:15px;
+			margin-bottom:50px;
 			b{
 				font-weight:bold;
 			}

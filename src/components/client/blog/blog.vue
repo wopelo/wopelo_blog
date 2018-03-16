@@ -3,9 +3,6 @@
   	<div id="bolgPage-hidden"></div>
   	<div id="visualAngle">
   		<div id="angleContent">
-  			<div class="angleContent-option">
-  				Blog
-  			</div>
   			<div class="angleContent-option angleContent-option-type">
   				<router-link to="/list">列表</router-link>
   			</div>
@@ -64,14 +61,17 @@
 					a{
 						display:block;
 						color:#1a1a1a;
+						transition:0.5s;
+						font-family:黑体;
+						font-size:20px;
 					}
 					.router-link-exact-active{
-						color:#175199;
+						color:#f33;
 					}
 				}
 				.angleContent-option-type:hover{
 					a{
-						color:#175199;
+						color:#f33;
 					}
 				}
 			}

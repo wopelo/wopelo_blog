@@ -13,7 +13,7 @@ let blogUser=new mongoose.Schema({
 blogUser.statics={
 	//获取列表
 	getList(jump,callback){
-		this.find({},callback).skip(jump).limit(10);
+		this.find({},{_id:1,title:1,date:1},callback).skip(jump).limit(10);
 	},
 	//获取某篇博客
 	getBlog(target,callback){
