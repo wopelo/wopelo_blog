@@ -23,7 +23,7 @@ import auth from "../components/backstage/auth/auth.vue"
 import navigation from "../components/backstage/navigation/navigation.vue"
 import saying from "../components/backstage/saying/saying.vue"
 import editor from "../components/backstage/editor/editor.vue";
-import blogManage from "../components/backstage/blog/blog.vue";
+// import blogManage from "../components/backstage/blog/blog.vue";
 import type from "../components/backstage/type/type.vue";
 import manage from "../components/backstage/manage/manage.vue";
 import comment from "../components/backstage/comment/comment.vue";
@@ -82,7 +82,7 @@ export default new Router({
             },
             {
               path:"/backstage/blog",
-              component:blogManage
+              component:overview
             },
             {
               path:"/backstage/type",

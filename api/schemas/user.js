@@ -45,7 +45,11 @@ blogUser.statics={
 	},
 	//添加类型
 	addType(newType,callback){
-		this.update({},{$push:{type:{name:newType,number:0}}},callback)
+		this.update({},{$push:{type:{name:newType,number:0}}},callback);
+	},
+	//添加数量
+	addNum(target,callback){
+		this.update({"type.name":target},{$inc:{"type.$.number":1}},callback);
 	}
 }
 

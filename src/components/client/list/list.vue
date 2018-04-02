@@ -1,19 +1,12 @@
 <template>
 	<div id="blogList">
 		<div class="listTerm" v-for="item in list" v-on:click="gotoDetail(item._id)">
-			<div class="listTerm-other">
-				<div class="listTerm-other-date">
-					{{item.date}}
-				</div>
-			</div>
 			<div class="listTerm-title">
 				{{item.title}}
 			</div>
-			<!-- <div class="listTerm-other">
-				<div class="listTerm-other-comment">
-					评论:{{item.comment}}条
-				</div>
-			</div> -->
+			<div class="listTerm-other">
+				<span>{{item.date}} {{item.type}}</span>
+			</div>
 		</div>
 	</div>
 </template>
@@ -33,7 +26,7 @@
 		  		jump:0
 		  	}
 		  }).then((res)=>{
-		  	this.list=res.data;
+		  	this.list=res.data.reverse();
 		  	console.log(this.list)
 		  })
 		},
@@ -48,9 +41,6 @@
 <style lang="scss" rel="text/css">
 	#blogList{
 		.listTerm{
-			display:flex;
-			align-items:center;
-			flex-wrap:wrap;
 			max-width:1000px;
 			padding:20px;
 			margin-bottom:10px;
@@ -61,12 +51,12 @@
 				font-size:20px;
     			font-weight:400;
     			letter-spacing:1px;
-    			text-align:center;
     			line-height:1.5;
+    			overflow:hidden;
+    			text-overflow:ellipsis;
+    			white-space:nowrap;
 			}
 			.listTerm-other{
-				display:flex;
-				justify-content:flex-end;
 				color:#999;
 				font-size:13px;
 				>div{

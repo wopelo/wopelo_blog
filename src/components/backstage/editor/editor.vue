@@ -5,7 +5,7 @@
 				<input type="text" placeholder="标题" v-model="title">
 			</div>
 			<div id="operation">
-				<button v-on:click="submit">提&ensp;&ensp;交</button>
+				<button v-on:click="submit">发&ensp;&ensp;表</button>
 				<button v-on:click="reset">重&ensp;&ensp;置</button>
 				<button>保存为草稿</button>
 			</div>
@@ -115,6 +115,7 @@
 							this.sending=false;
 						}
 					})
+					console.log(this.typeList)
 				}
 			}
 		}
