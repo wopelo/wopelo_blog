@@ -91,6 +91,7 @@
 			img{
 			    max-width:600px;
 			    height:auto;
+			    box-shadow:0 0 5px rgb(51,51,51)
 			}
 		}
 	}

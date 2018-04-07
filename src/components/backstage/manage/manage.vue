@@ -1,13 +1,20 @@
 <template>
 	<div id="manage">
-		<div class="manage-list" v-for="item in list">
-			<div class="manage-title">
-				{{item.title}}
+		<div id="manageContent">
+			<div class="manage-list" v-for="item in list">
+				<div class="manage-title">
+					{{item.title}}
+				</div>
+				<div class="manage-message">
+					<span>{{item.date}} {{item.type}}</span>
+					<span class="icon-delete manage-delete" v-on:click="manageDelete(item._id)"></span>
+				</div>
 			</div>
-			<div class="manage-message">
-				<span>{{item.date}} {{item.type}}</span>
-				<span class="icon-delete manage-delete" v-on:click="manageDelete(item._id)"></span>
-			</div>
+		</div>
+
+		<div id="managePage">
+			<a class="pageButton" v-on:click="previous()">Previous</a>
+			<a class="pageButton" v-on:click="nextPage()">Next</a>
 		</div>
 
 		<div id="manage-curtain" v-show="alert"></div>
@@ -35,20 +42,30 @@
 			return {
 				list:[],
 				alert:false,
-				targetId:""
+				targetId:"",
+				now:1,
+				last:false,
+				num:10
 			}
 		},
 		created(){
-		  this.$axios({
-		  	method:"post",
-		  	url:"/api/getList",
-		  	data:{
-		  		jump:0
-		  	}
-		  }).then((res)=>{
-		  	this.list=res.data.reverse();
-		  	console.log(this.list)
-		  })
+		  Promise.all([
+		  	this.$axios({
+		  		method:"post",
+		  		url:"/api/getList",
+		  		data:{
+		  			jump:this.now*this.num - this.num
+		  		}
+		  	}).then((res)=>{
+		  		this.list=res.data;
+		  	}),
+		  	this.$axios({
+		  		method:"post",
+		  		url:"/api/getTotal"
+		  	}).then((res)=>{
+		  		this.last = Math.ceil(res.data.length/this.num);
+		  	})
+		  ])
 		},
 		methods:{
 			manageDelete(id){
@@ -57,6 +74,34 @@
 			},
 			deleteArticle(){
 				console.log(this.targetId);
+			},
+			previous(){
+				if(this.now != 1){
+					this.now--;
+					this.$axios({
+						method:"post",
+						url:"/api/getList",
+						data:{
+							jump:this.now*this.num - this.num
+						}
+					}).then((res)=>{
+						this.list=res.data;
+					})
+				}
+			},
+			nextPage(){
+				if(this.now != this.last){
+					this.now++;
+					this.$axios({
+						method:"post",
+						url:"/api/getList",
+						data:{
+							jump:this.now*this.num - this.num
+						}
+					}).then((res)=>{
+						this.list=res.data;
+					})
+				}
 			}
 		}
 	}
@@ -64,31 +109,59 @@
 
 <style lang="scss" rel="text/css">
 	#manage{
-		.manage-list{
-			padding-bottom:5px;
-			border-bottom:1px solid #e6e6e6;
-			line-height:1.5;
-			.manage-title{
-				color:#444;
-				font-size:20px;
-    			font-weight:400;
-    			letter-spacing:1px;
+		#manageContent{
+			min-height: 90vh;
+			box-sizing: border-box;
+			padding-bottom: 40px;
+			.manage-list{
+				padding-bottom:5px;
+				border-bottom:1px solid #e6e6e6;
+				line-height:1.5;
+				transition: 0.5s;
+				.manage-title{
+					color:#444;
+					font-size:20px;
+	    			font-weight:400;
+	    			letter-spacing:1px;
+				}
+				.manage-message{
+					color:#999;
+					font-size:13px;
+					>span{;
+						vertical-align:middle;
+					}
+					.manage-delete{
+						font-size:25px;
+						cursor:pointer;
+						float:right;
+						transition:0.5s;
+					}
+					.manage-delete:hover{
+						color:red;
+					}
+				}
 			}
-			.manage-message{
-				color:#999;
-				font-size:13px;
-				>span{;
-					vertical-align:middle;
-				}
-				.manage-delete{
-					font-size:25px;
-					cursor:pointer;
-					float:right;
-					transition:0.5s;
-				}
-				.manage-delete:hover{
-					color:red;
-				}
+			.manage-list:hover{
+				background-color: #f6f6f6;
+			}
+		}
+		#managePage{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 40px;
+			margin-top: -40px;
+			.pageButton{
+				padding: 5px 10px;
+				cursor: pointer;
+				font-size: 15px;
+				color: #999;
+				border-bottom: 3px solid transparent;
+				transition: 0.5s;
+			}
+			.pageButton:hover{
+				color: #333;
+				border-bottom-color: #333;
 			}
 		}
 		#manage-curtain{

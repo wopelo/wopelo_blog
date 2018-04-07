@@ -1,12 +1,19 @@
 <template>
 	<div id="blogList">
-		<div class="listTerm" v-for="item in list" v-on:click="gotoDetail(item._id)">
+		<div id="listContent">
+			<div class="listTerm" v-for="item in list" v-on:click="gotoDetail(item._id)">
 			<div class="listTerm-title">
 				{{item.title}}
 			</div>
 			<div class="listTerm-other">
 				<span>{{item.date}} {{item.type}}</span>
 			</div>
+		</div>
+		</div>
+
+		<div id="pageControl">
+			<a class="pageButton" v-on:click="previous()">Previous</a>
+			<a class="pageButton" v-on:click="nextPage()">Next</a>
 		</div>
 	</div>
 </template>
@@ -15,24 +22,62 @@
 	export default {
 		data(){
 			return {
-				list:[]
+				list:[],
+				now:1,
+				last:false,
+				num:10
 			}
 		},
 		created(){
-		  this.$axios({
-		  	method:"post",
-		  	url:"/api/getList",
-		  	data:{
-		  		jump:0
-		  	}
-		  }).then((res)=>{
-		  	this.list=res.data.reverse();
-		  	console.log(this.list)
-		  })
+			Promise.all([
+				this.$axios({
+					method:"post",
+					url:"/api/getList",
+					data:{
+						jump:this.now*this.num - this.num
+					}
+				}).then((res)=>{
+					this.list=res.data;
+				}),
+				this.$axios({
+					method:"post",
+					url:"/api/getTotal"
+				}).then((res)=>{
+					this.last = Math.ceil(res.data.length/this.num);
+				})
+			])
 		},
 		methods:{
 			gotoDetail(num){
 				this.$router.push({name:'detail',query:{id:num}});
+			},
+			previous(){
+				if(this.now != 1){
+					this.now--;
+					this.$axios({
+						method:"post",
+						url:"/api/getList",
+						data:{
+							jump:this.now*this.num - this.num
+						}
+					}).then((res)=>{
+						this.list=res.data;
+					})
+				}
+			},
+			nextPage(){
+				if(this.now != this.last){
+					this.now++;
+					this.$axios({
+						method:"post",
+						url:"/api/getList",
+						data:{
+							jump:this.now*this.num - this.num
+						}
+					}).then((res)=>{
+						this.list=res.data;
+					})
+				}
 			}
 		}
 	}
@@ -40,10 +85,14 @@
 
 <style lang="scss" rel="text/css">
 	#blogList{
+		#listContent{
+			min-height: 90vh;
+			box-sizing: border-box;
+			padding-bottom: 40px;
+		}
 		.listTerm{
 			max-width:1000px;
 			padding:20px;
-			margin-bottom:10px;
 			border-bottom:1px solid #e6e6e6;
 			cursor:pointer;
 			.listTerm-title{
@@ -62,6 +111,25 @@
 				>div{
 					margin-right:35px;
 				}
+			}
+		}
+		#pageControl{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 40px;
+			margin-top: -40px;
+			.pageButton{
+				padding: 5px 10px;
+				cursor: pointer;
+				font-size: 15px;
+				color: #999;
+				border-bottom: 3px solid transparent;
+				transition: 0.5s;
+			}
+			.pageButton:hover{
+				color: #333;
+				border-bottom-color: #333;
 			}
 		}
 	}

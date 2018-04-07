@@ -63,6 +63,11 @@ app.post("/api/getList",bodyParser.json(),function(req,res){
 app.post("/api/getBlog",bodyParser.json(),function(req,res){
     let getBlog=require("./api/server/getBlog.js");
     getBlog(req.body.target,res);
+});
+//获取总篇数
+app.post("/api/getTotal",bodyParser.json(),function(req,res){
+    let getTotal=require("./api/server/getTotal.js");
+    getTotal(res);
 })
 
 //定义static目录
