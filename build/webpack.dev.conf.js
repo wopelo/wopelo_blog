@@ -96,10 +96,15 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           let modifyAbout=require("../api/server/modifyAbout.js");
           modifyAbout(req.body.code,req.body.newArticle,res);
       });
-      //获取博客列表
+      //获取全部博客列表
       app.post("/api/getList",bodyParser.json(),function(req,res){
           let getList=require("../api/server/getList.js");
           getList(req.body.jump,res);
+      });
+      //获取某类型列表
+      app.post("/api/getTarget",bodyParser.json(),function(req,res){
+          let getList=require("../api/server/getTarget.js");
+          getList(req.body.jump,req.body.type,res);
       });
       //获取指定博客
       app.post("/api/getBlog",bodyParser.json(),function(req,res){
@@ -110,6 +115,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       app.post("/api/getTotal",bodyParser.json(),function(req,res){
           let getTotal=require("../api/server/getTotal.js");
           getTotal(res);
+      });
+      //获取某类型总篇数
+      app.post("/api/getTargetAll",bodyParser.json(),function(req,res){
+          let getTotal=require("../api/server/getTargetAll.js");
+          getTotal(req.body.type,res);
       })
     }
   },

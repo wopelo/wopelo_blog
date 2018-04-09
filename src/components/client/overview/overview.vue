@@ -1,6 +1,6 @@
 <template>
 	<div id="overview">
-		<div class="viewList" v-for="item in type">
+		<div class="viewList" v-for="item in type" v-on:click="typeList(item.name)">
 			{{item.name}} : {{item.number}}篇
 		</div>
 	</div>
@@ -19,6 +19,11 @@
 		    this.type=res.data.type;
 		  });
 		},
+		methods:{
+			typeList(name){
+				this.$router.push({name:'list',query:{type:name}});
+			}
+		}
 	}
 </script>
 
@@ -32,6 +37,11 @@
 			color:#444;
 			font-size:16px;
 			font-weight:400;
+			cursor: pointer;
+			transition: 0.5s;
+		}
+		.viewList:hover{
+			color: #f33;
 		}
 	}
 </style>

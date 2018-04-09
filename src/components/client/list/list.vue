@@ -2,18 +2,18 @@
 	<div id="blogList">
 		<div id="listContent">
 			<div class="listTerm" v-for="item in list" v-on:click="gotoDetail(item._id)">
-			<div class="listTerm-title">
-				{{item.title}}
+				<div class="listTerm-title">
+					{{item.title}}
+				</div>
+				<div class="listTerm-other">
+					<span>{{item.date}} {{item.type}}</span>
+				</div>
 			</div>
-			<div class="listTerm-other">
-				<span>{{item.date}} {{item.type}}</span>
-			</div>
-		</div>
 		</div>
 
 		<div id="pageControl">
-			<a class="pageButton" v-on:click="previous()">Previous</a>
-			<a class="pageButton" v-on:click="nextPage()">Next</a>
+			<a class="pageButton" v-on:click="previous()">{{Previous}}</a>
+			<a class="pageButton" v-on:click="nextPage()">{{Next}}</a>
 		</div>
 	</div>
 </template>
@@ -24,41 +24,70 @@
 			return {
 				list:[],
 				now:1,
-				last:false,
-				num:10
+				last:0,
+				num:10,
+				type:this.$route.query.type,
+				Previous:"Previous",
+				Next:"Next"
 			}
 		},
 		created(){
-			Promise.all([
-				this.$axios({
-					method:"post",
-					url:"/api/getList",
-					data:{
-						jump:this.now*this.num - this.num
-					}
-				}).then((res)=>{
-					this.list=res.data;
-				}),
-				this.$axios({
-					method:"post",
-					url:"/api/getTotal"
-				}).then((res)=>{
-					this.last = Math.ceil(res.data.length/this.num);
-				})
-			])
+			if(this.type == undefined){
+				this.getBlog("/api/getList","/api/getTotal")
+			}else{
+				this.getBlog("/api/getTarget","/api/getTargetAll")
+			}
+		},
+		beforeRouteUpdate(to, from, next){
+			next();
+			this.type = this.$route.query.type;
+			this.now = 1;
+			this.getBlog("/api/getList","/api/getTotal");
 		},
 		methods:{
+			getBlog(listUrl,numUrl){
+				Promise.all([
+					this.$axios({
+						method:"post",
+						url:listUrl,
+						data:{
+							jump:this.now*this.num - this.num,
+							type:this.type
+						}
+					}).then((res)=>{
+						this.list = res.data;
+					}),
+					this.$axios({
+						method:"post",
+						url:numUrl,
+						data:{
+							type:this.type
+						}
+					}).then((res)=>{
+						this.last = Math.ceil(res.data.length/this.num);
+						this.checkControl();
+					})
+				])
+			},
 			gotoDetail(num){
 				this.$router.push({name:'detail',query:{id:num}});
 			},
 			previous(){
+				let targetUrl = "";
+				if(this.type == undefined){
+					targetUrl = "/api/getList";
+				}else{
+					targetUrl = "/api/getTarget";
+				}
 				if(this.now != 1){
 					this.now--;
+					this.checkControl();
 					this.$axios({
 						method:"post",
-						url:"/api/getList",
+						url:targetUrl,
 						data:{
-							jump:this.now*this.num - this.num
+							jump:this.now*this.num - this.num,
+							type:this.type
 						}
 					}).then((res)=>{
 						this.list=res.data;
@@ -66,17 +95,37 @@
 				}
 			},
 			nextPage(){
+				let targetUrl = "";
+				if(this.type == undefined){
+					targetUrl = "/api/getList";
+				}else{
+					targetUrl = "/api/getTarget";
+				}
 				if(this.now != this.last){
 					this.now++;
+					this.checkControl();
 					this.$axios({
 						method:"post",
-						url:"/api/getList",
+						url:targetUrl,
 						data:{
-							jump:this.now*this.num - this.num
+							jump:this.now*this.num - this.num,
+							type:this.type
 						}
 					}).then((res)=>{
 						this.list=res.data;
 					})
+				}
+			},
+			checkControl(){
+				if(this.now == 1){
+					this.Previous = "";
+				}else{
+					this.Previous = "Previous";
+				}
+				if(this.now == this.last){
+					this.Next = "";
+				}else{
+					this.Next = "Next";
 				}
 			}
 		}
@@ -104,6 +153,7 @@
     			overflow:hidden;
     			text-overflow:ellipsis;
     			white-space:nowrap;
+    			transition: 0.5s;
 			}
 			.listTerm-other{
 				color:#999;
@@ -112,6 +162,9 @@
 					margin-right:35px;
 				}
 			}
+		}
+		.listTerm:hover .listTerm-title{
+			color: #f33;
 		}
 		#pageControl{
 			display: flex;

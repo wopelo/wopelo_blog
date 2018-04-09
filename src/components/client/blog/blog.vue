@@ -4,10 +4,10 @@
   	<div id="visualAngle">
   		<div id="angleContent">
   			<div class="angleContent-option angleContent-option-type">
-  				<router-link to="/list">列表</router-link>
+  				<router-link :to="{name:'list',query:{type:undefined}}">列表</router-link>
   			</div>
   			<div class="angleContent-option angleContent-option-type">
-  				<router-link to="/overview">总览</router-link>
+  				<router-link to="/overview">类别</router-link>
   			</div>
   		</div>
   	</div>

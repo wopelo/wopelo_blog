@@ -11,9 +11,13 @@ let blogUser=new mongoose.Schema({
 });
 
 blogUser.statics={
-	//获取列表
+	//获取全部博客
 	getList(jump,callback){
 		this.find({},{_id:1,title:1,type:1,date:1},callback).skip(jump).limit(10).sort({_id:-1});
+	},
+	//获取指定类型全部博客
+	getTarget(jump,target,callback){
+		this.find({type:target},{_id:1,title:1,type:1,date:1},callback).skip(jump).limit(10).sort({_id:-1});
 	},
 	//获取某篇博客
 	getBlog(target,callback){
@@ -22,6 +26,10 @@ blogUser.statics={
 	//获取总篇数
 	getTotal(callback){
 		this.find({},{_id:1},callback).count();
+	},
+	//获得某类型总篇数
+	getTargetAll(target,callback){
+		this.find({type:target},{_id:1},callback).count();
 	}
 }
 
