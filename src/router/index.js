@@ -28,6 +28,7 @@ import type from "../components/backstage/type/type.vue";
 import manage from "../components/backstage/manage/manage.vue";
 import comment from "../components/backstage/comment/comment.vue";
 import aboutManage from "../components/backstage/about/about.vue";
+import edBlog from "../components/backstage/edBlog/edBlog.vue";
 
 Vue.use(Router)
 
@@ -104,6 +105,11 @@ export default new Router({
             {
               path:"/backstage/about",
               component:aboutManage
+            },
+            {
+              path:"/backstage/edBlog",
+              name:"edBlog",
+              component:edBlog
             }
           ]
         }

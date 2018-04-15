@@ -50,6 +50,10 @@ blogUser.statics={
 	//添加数量
 	addNum(target,callback){
 		this.update({"type.name":target},{$inc:{"type.$.number":1}},callback);
+	},
+	//减少数量
+	reduceNum(target,callback){
+		this.update({"type.name":target},{$inc:{"type.$.number":-1}},callback);
 	}
 }
 

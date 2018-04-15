@@ -30,6 +30,14 @@ blogUser.statics={
 	//获得某类型总篇数
 	getTargetAll(target,callback){
 		this.find({type:target},{_id:1},callback).count();
+	},
+	//删除某篇博客
+	removeTarget(target,callback){
+		this.remove({_id:mongoose.mongo.ObjectId(target)},callback);
+	},
+	//修改博客
+	modifyBlog(target,newTitle,newContent,callback){
+		this.update({_id:mongoose.mongo.ObjectId(target)},{$set:{title:newTitle,content:newContent}},callback);
 	}
 }
 

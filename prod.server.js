@@ -78,7 +78,17 @@ app.post("/api/getTotal",bodyParser.json(),function(req,res){
 app.post("/api/getTargetAll",bodyParser.json(),function(req,res){
     let getTotal=require("./api/server/getTargetAll.js");
     getTotal(req.body.type,res);
-})
+});
+//删除某篇博客
+app.post("/api/removeBlog",bodyParser.json(),function(req,res){
+    let getTotal=require("./api/server/removeBlog.js");
+    getTotal(req.body.code,req.body.target,req.body.type,res);
+});
+//修改某篇博客
+app.post("/api/modifyBlog",bodyParser.json(),function(req,res){
+    let getTotal=require("./api/server/modifyBlog.js");
+    getTotal(req.body.code,req.body.target,req.body.newTitle,req.body.newContent,res);
+});
 
 //定义static目录
 app.use(express.static("./dist"));
