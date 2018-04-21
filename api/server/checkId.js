@@ -1,18 +1,18 @@
-let User=require("../models/user.js");
+let User = require("../models/user.js");
 
 function checkCode(num){
-	let promise=new Promise((resolve,reject)=>{
-		User.checkCode(num,function(err,data){
+	let promise = new Promise((resolve, reject)=>{
+		User.checkCode(num,function(err, data){
 			if(err){
 				reject({"error":err});
-			}else if(data.length==0){
+			}else if(data.length == 0){
 				reject({"error":"code不匹配"});
 			}else{
-				resolve()
+				resolve();
 			}
 		})
 	});
 	return promise;
 }
 
-module.exports=checkCode;
+module.exports = checkCode;

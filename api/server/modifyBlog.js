@@ -1,20 +1,21 @@
-let Blog=require("../models/blog.js");
-let checkCode=require("./checkId.js");
-let backClient=require("./backClient.js");
+let Blog = require("../models/blog.js");
+let checkCode = require("./checkId.js");
 
-let modify = function(num,target,newTitle,newContent,res){
-	checkCode(num).then(()=>{
-		return blogModify(target,newTitle,newContent);
-	}).then((value)=>{
-		backClient(res,value);
-	}).catch((err)=>{
-		backClient(res,err);
-	})
+let modify = function(num, target, newTitle, newContent){
+	return new Promise((resolve, reject) => {
+		checkCode(num).then(() => {
+			return blogModify(target, newTitle, newContent);
+		}).then((value) => {
+			resolve(value);
+		}).catch((err) => {
+			reject(err);
+		})
+	});
 }
 
-function blogModify(target,newTitle,newContent){
-	let promise = new Promise((resolve,reject)=>{
-		Blog.modifyBlog(target,newTitle,newContent,function(err,data){
+function blogModify(target, newTitle, newContent){
+	let promise = new Promise((resolve, reject) => {
+		Blog.modifyBlog(target, newTitle, newContent, function(err,data){
 			if(err){
 				reject({"error":err});
 			}else{
@@ -25,4 +26,4 @@ function blogModify(target,newTitle,newContent){
 	return promise;
 }
 
-module.exports=modify;
+module.exports = modify;

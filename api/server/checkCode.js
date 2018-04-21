@@ -1,14 +1,14 @@
-let User=require("../models/user.js");
-let checkId=require("./checkId.js");
-let backClient=require("./backClient.js");
+let User = require("../models/user.js");
+let checkId = require("./checkId.js");
 
-let checkCode=function(num,res){
-	checkId(num).then(()=>{
-		let result={"success":"code匹配"};
-		return backClient(res,result);
-	}).catch((err)=>{
-		backClient(res,err);
-	})
+let checkCode = function(num,res){
+	return new Promise((resolve, reject) => {
+		checkId(num).then(() => {
+			resolve({"success":"code匹配"});
+		}).catch((err) => {
+			reject(err);
+		})
+	});
 }
 
-module.exports=checkCode;
+module.exports = checkCode;

@@ -1,20 +1,21 @@
-let About=require("../models/about.js");
-let checkCode=require("./checkId.js");
-let backClient=require("./backClient.js");
+let About = require("../models/about.js");
+let checkCode = require("./checkId.js");
 
-let modify=function(num,newArticle,res){
-	checkCode(num).then(()=>{
-		return aboutModify(newArticle);
-	}).then((value)=>{
-		backClient(res,value);
-	}).catch((err)=>{
-		backClient(res,err);
+let modify = function(num, newArticle){
+	return new Promise((resolve, reject) => {
+		checkCode(num).then(() => {
+			return aboutModify(newArticle);
+		}).then((value) => {
+			resolve(value);
+		}).catch((err) => {
+			reject(err);
+		})
 	})
 }
 
 function aboutModify(newArticle){
-	let promise=new Promise((resolve,reject)=>{
-		About.modifyAbout(newArticle,function(err,data){
+	let promise = new Promise((resolve, reject) => {
+		About.modifyAbout(newArticle, function(err, data){
 			if(err){
 				reject({"error":err});
 			}else{
@@ -25,4 +26,4 @@ function aboutModify(newArticle){
 	return promise;
 }
 
-module.exports=modify;
+module.exports = modify;

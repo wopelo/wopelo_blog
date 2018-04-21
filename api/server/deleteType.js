@@ -1,20 +1,21 @@
-let User=require("../models/user.js");
-let checkCode=require("./checkId.js");
-let backClient=require("./backClient.js");
+let User = require("../models/user.js");
+let checkCode = require("./checkId.js");
 
-let deleteType=function(num,target,res){
-	checkCode(num).then(()=>{
-		return rewriteType(target);
-	}).then((value)=>{
-		backClient(res,value);
-	}).catch((err)=>{
-		backClient(res,err);
-	})
+let deleteType = function(num,target){
+	return new Promise((resolve, reject) => {
+		checkCode(num).then(() => {
+			return rewriteType(target);
+		}).then((value) => {
+			resolve(value);
+		}).catch((err) => {
+			reject(err);
+		})
+	});
 }
 
 function rewriteType(target){
-	let promise=new Promise((resolve,reject)=>{
-		User.rewriteType(target,function(err,data){
+	let promise = new Promise((resolve, reject) => {
+		User.rewriteType(target,function(err, data){
 			if(err){
 				reject({"error":"删除错误"});
 			}else{
@@ -25,4 +26,4 @@ function rewriteType(target){
 	return promise;
 }
 
-module.exports=deleteType;
+module.exports = deleteType;
