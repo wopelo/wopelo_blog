@@ -32,7 +32,10 @@ wopelo的个人博客
 后端接口
 
 ## prod.server.js
-打包好的项目的启动文件
+打包好的项目的启动文件，使用express
+
+## koa.server.js
+同样是打包好的启动文件，但使用koa
 
 # 相关操作
 
@@ -46,6 +49,9 @@ npm run dev
 # build项目
 npm run build
 
-# 运行打包好的项目 端口82
+# 运行打包好的项目(express) 端口82
 node prod.server.js
+
+# 或者使用用koa作为服务器 端口82
+node koa.server.js
 ```
