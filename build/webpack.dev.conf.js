@@ -99,11 +99,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       //删除种类
       app.post("/api/deleteType",bodyParser.json(),function(req,res){
           let deleteType = require("../api/server/deleteType.js");
-          deleteType(req.body.code,req.body.type,res);
           deleteType(req.body.code,req.body.type).then((result) => {
             backClient(res, result);
           }).catch((err) => {
-            backClient(res, result);
+            backClient(res, err);
           })
       });
 
@@ -183,7 +182,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           getTotal().then((result) => {
             backClient(res, result);
           }).catch((err) => {
-            backClient(err, result);
+            backClient(res, err);
           });
       });
 
@@ -193,7 +192,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           getTotal(req.body.type).then((result) => {
             backClient(res, result);
           }).catch((err) => {
-            backClient(err, result);
+            backClient(res, err);
           });
       });
 
@@ -203,7 +202,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           getTotal(req.body.code,req.body.target,req.body.type).then((result) => {
             backClient(res, result);
           }).catch((err) => {
-            backClient(err, result);
+            backClient(res, err);
           });
       });
 
@@ -213,7 +212,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           getTotal(req.body.code,req.body.target,req.body.newTitle,req.body.newContent).then((result) => {
             backClient(res, result);
           }).catch((err) => {
-            backClient(err, result);
+            backClient(res, err);
           });
       });
     }

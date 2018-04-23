@@ -57,11 +57,10 @@ app.post("/api/modifySaying",bodyParser.json(),function(req,res){
 //删除种类
 app.post("/api/deleteType",bodyParser.json(),function(req,res){
     let deleteType = require("./api/server/deleteType.js");
-    deleteType(req.body.code,req.body.type,res);
     deleteType(req.body.code,req.body.type).then((result) => {
       backClient(res, result);
     }).catch((err) => {
-      backClient(res, result);
+      backClient(res, err);
     })
 });
 
@@ -141,7 +140,7 @@ app.post("/api/getTotal",bodyParser.json(),function(req,res){
     getTotal().then((result) => {
       backClient(res, result);
     }).catch((err) => {
-      backClient(err, result);
+      backClient(res, err);
     });
 });
 
@@ -151,7 +150,7 @@ app.post("/api/getTargetAll",bodyParser.json(),function(req,res){
     getTotal(req.body.type).then((result) => {
       backClient(res, result);
     }).catch((err) => {
-      backClient(err, result);
+      backClient(res, err);
     });
 });
 
@@ -161,7 +160,7 @@ app.post("/api/removeBlog",bodyParser.json(),function(req,res){
     getTotal(req.body.code,req.body.target,req.body.type).then((result) => {
       backClient(res, result);
     }).catch((err) => {
-      backClient(err, result);
+      backClient(res, err);
     });
 });
 
@@ -171,7 +170,7 @@ app.post("/api/modifyBlog",bodyParser.json(),function(req,res){
     getTotal(req.body.code,req.body.target,req.body.newTitle,req.body.newContent).then((result) => {
       backClient(res, result);
     }).catch((err) => {
-      backClient(err, result);
+      backClient(res, err);
     });
 });
 
