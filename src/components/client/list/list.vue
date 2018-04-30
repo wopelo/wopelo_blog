@@ -146,7 +146,7 @@
 			cursor:pointer;
 			.listTerm-title{
 				color:#444;
-				font-size:20px;
+				font-size:18px;
     			font-weight:400;
     			letter-spacing:1px;
     			line-height:1.5;
