@@ -4,11 +4,6 @@
 			<div id="brand">
 				<div id="font">WOPELO</div>
 			</div>
-			<div id="news">
-				<div id="bell">
-					<span class="icon-bell"></span>
-				</div>
-			</div>
 		</div>
 		<div id="list">
 			<div class="option">

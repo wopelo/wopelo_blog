@@ -29,7 +29,7 @@
 					vertical-align:middle;
 				}
 				.manage-delete{
-					font-size:25px;
+					font-size:20px;
 					cursor:pointer;
 					float:right;
 					transition:0.5s;
@@ -82,15 +82,8 @@
 	    height:auto;
 	    z-index:201;
 	    background-color:white;
-        .boxTop{
-        	text-align:right;
-        	.icon-delete{
-        		font-size:30px;
-        		cursor:pointer;
-        	}
-        }
         .boxContent{
-        	padding:10px 50px 60px 50px;
+        	padding:60px 50px 60px 50px;
         	.contentTip{
         		font-size:18px;
     		    font-weight:200;

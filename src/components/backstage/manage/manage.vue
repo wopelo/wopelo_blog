@@ -7,7 +7,7 @@
 				</div>
 				<div class="manage-message">
 					<span>{{item.date}} {{item.type}}</span>
-					<span class="icon-delete manage-delete" v-on:click="manageDelete(item._id,item.type)"></span>
+					<span class="iconfont icon-delete manage-delete" v-on:click="manageDelete(item._id,item.type)"></span>
 				</div>
 			</div>
 		</div>
@@ -20,9 +20,6 @@
 		<div id="manage-curtain" v-show="alert"></div>
 
 		<div id="manage-alert" v-show="alert">
-			<div class="boxTop">
-				<span class="icon-delete" v-on:click="alert=false"></span>
-			</div>
 			<div class="boxContent">
 				<div class="contentTip">
 					确认删除这篇文章？

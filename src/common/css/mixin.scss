@@ -1,0 +1,26 @@
+@mixin choose($pos){
+	background: linear-gradient(
+	    rgba(0, 0, 0, 0.2),
+	    rgba(0, 0, 0, 0.2)
+	),url(#{$pos}) no-repeat fixed;
+}
+
+.bg_a{
+	@include choose('/static/image/bg_a.jpg');
+}
+
+.bg_b{
+	@include choose('/static/image/bg_b.jpg');
+}
+
+.bg_c{
+	@include choose('/static/image/bg_c.jpg');
+}
+
+.bg_d{
+	@include choose('/static/image/bg_d.jpg');
+}
+
+.bg_e{
+	@include choose('/static/image/bg_e.jpg');
+}

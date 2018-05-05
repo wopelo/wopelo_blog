@@ -5,14 +5,11 @@
 				<span class="name">{{item.name}}</span>
 			</div>
 			<div class="type icon" v-on:click="Add=true">
-				<span class="icon-add"></span>
+				<span class="iconfont icon-add1"></span>
 			</div>
 		</div>
 		<div v-show="Delete || Add" id="typeMask"></div>
 		<div v-show="Delete" class="typeBox">
-			<div class="boxTop">
-				<span class="icon-delete" v-on:click="Delete=false"></span>
-			</div>
 			<div class="boxContent">
 				<div class="contentTip">
 					确认删除类型 {{target}}
@@ -24,9 +21,6 @@
 			</div>
 		</div>
 		<div v-show="Add" class="typeBox">
-			<div class="boxTop">
-				<span class="icon-delete" v-on:click="Add=false"></span>
-			</div>
 			<div class="boxContent">
 				<div class="contentTip">
 					<input type="text" v-model="typeName" placeholder="新的类型">

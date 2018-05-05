@@ -145,7 +145,7 @@
 			border-bottom:1px solid #e6e6e6;
 			cursor:pointer;
 			.listTerm-title{
-				color:#444;
+				color:white;
 				font-size:18px;
     			font-weight:400;
     			letter-spacing:1px;
@@ -176,13 +176,14 @@
 				padding: 5px 10px;
 				cursor: pointer;
 				font-size: 15px;
-				color: #999;
+				font-style: italic;
+				color: white;
 				border-bottom: 3px solid transparent;
 				transition: 0.5s;
 			}
 			.pageButton:hover{
-				color: #333;
-				border-bottom-color: #333;
+				color: black;
+				border-bottom-color: black;
 			}
 		}
 	}

@@ -16,5 +16,5 @@
 </script>
 
 <style lang="scss" rel="text/css">
-	@import '../../../common/css/style.css';
+	@import '../../../../static/fonts/iconfont.css';
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<div id="overview">
+	<div id="pandect">
 		<div class="viewList" v-for="item in type" v-on:click="typeList(item.name)">
 			{{item.name}} : {{item.number}}篇
 		</div>
@@ -28,13 +28,13 @@
 </script>
 
 <style lang="scss" rel="text/css">
-	#overview{
+	#pandect{
 		line-height:1.8;
 		.viewList{
 			padding:20px;
 			margin-bottom:10px;
 			border-bottom:1px solid #e6e6e6;
-			color:white;
+			color:black;
 			font-size:16px;
 			font-weight:400;
 			cursor: pointer;

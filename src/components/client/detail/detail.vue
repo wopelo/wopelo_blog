@@ -43,12 +43,13 @@
 <style lang="scss" rel="text/css">
 	%title{
 		margin:8px 0 16px 0;
-		color:#444;
+		color:white;
 	}
 	#detailPage{
 		padding:0 10px;
 		#detailTitle{
 			font-size:2em;
+			color:white;
 			margin:8px 0 8px 0;
 		}
 		#detailTpye,#detailTime{
@@ -59,7 +60,7 @@
 		}
 		#detailContent{
 			line-height:1.8;
-			color:#666;
+			color:white;
 			margin-top:15px;
 			margin-bottom:50px;
 			b{
@@ -92,6 +93,10 @@
 			    max-width:600px;
 			    height:auto;
 			    box-shadow:0 0 5px rgb(51,51,51)
+			}
+			pre{
+				font-size: 16px;
+				font-style: italic;
 			}
 		}
 	}

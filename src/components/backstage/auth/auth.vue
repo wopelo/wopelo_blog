@@ -81,6 +81,7 @@
 					font-size: 14px;
 					box-sizing: border-box;
 					background-color:transparent;
+					color:white;
 				}
 				input:focus{
 					border-color: #03a9f4;

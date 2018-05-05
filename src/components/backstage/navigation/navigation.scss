@@ -21,25 +21,6 @@
 				font-family:华文新魏;
 			}
 		}
-		#news{
-			flex-grow:1;
-			display:flex;
-			align-items:center;
-			color:white;
-			#bell{
-				position:absolute;
-				right:15px;
-				font-size:25px;
-			    background:#8b5c7e;
-			    padding:5px;
-			    border-radius:50%;
-			    cursor:pointer;
-			    transition:0.5s;
-			}
-			#bell:hover{
-				background:#fa9fa4;
-			}
-		}
 	}
 	#list{
 		position:fixed;
