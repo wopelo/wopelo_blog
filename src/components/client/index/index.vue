@@ -63,7 +63,7 @@
 			}
 		},
 		created(){
-		  this.cookieSaying();
+		 	this.cookieSaying();
 		},
 		components:{
 			background

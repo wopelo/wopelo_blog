@@ -3,6 +3,9 @@
   	<div id="visualAngle">
   		<div id="angleContent">
   			<div class="angleContent-option angleContent-option-type">
+  				<router-link to="/">Home</router-link>
+  			</div>
+  			<div class="angleContent-option angleContent-option-type">
   				<router-link :to="{name:'list',query:{type:undefined}}">List</router-link>
   			</div>
   			<div class="angleContent-option angleContent-option-type">

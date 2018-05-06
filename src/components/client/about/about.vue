@@ -1,5 +1,8 @@
 <template>
   <div id="aboutMe" v-bind:class="backImg">
+  	<div id="aboutBack">
+  		<router-link to="/">Home</router-link>
+  	</div>
   	<div v-html="article" id="articleContent"></div>
   </div>
 </template>
@@ -31,7 +34,28 @@
 	}
 
 	#aboutMe{
-		padding:50px 0;
+		padding:0 0 50px 0;
+		#aboutBack{
+			position:relative;
+			margin:0 auto 20px auto;
+			max-width:600px;
+			height: 50px;
+			line-height: 50px;
+		    font-family: 黑体;
+		    font-size: 20px;
+		    font-style: italic;
+		    cursor: pointer;
+		    a{
+		    	display: inline-block;
+		    	color: white;
+		    	border-bottom: 3px solid transparent;
+		    	transition: 0.5s;
+		    }
+		    a:hover{
+		    	color: black;
+		    	border-bottom: 3px solid black;
+		    }
+		}
 		#articleContent{
 			position:relative;
 			max-width:600px;
