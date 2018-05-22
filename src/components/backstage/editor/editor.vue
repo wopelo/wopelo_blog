@@ -11,18 +11,18 @@
 			</div>
 		</div>
 		<div id="editorMenu"></div>
-		<div id="editorElem">
+		<div id="editorElem" v-bind:class="$style.editorElem">
 			<p>博客内容</p>
 		</div>
-		<div v-show="showType" id="typeMask"></div>
-		<div v-show="showType" id="chooseType">
-			<div id="editorTypeList">
-				<div class="type" v-for="item in typeList">
+		<div v-show="showType" v-bind:class="$style.typeMask"></div>
+		<div v-show="showType" v-bind:class="$style.chooseType">
+			<div v-bind:class="$style.editorTypeList">
+				<div  v-bind:class="$style.type" v-for="item in typeList">
 					<input type="checkbox" name="typeItem" v-bind:value="item.name" v-bind:id="item.name" v-on:click="itemChecked(item)">
 					<label v-bind:for="item.name">{{item.name}}</label>
 				</div>
 			</div>
-			<div id="submitButton">
+			<div v-bind:class="$style.submitButton">
 				<div v-if="! sending">
 					<button v-on:click="editorSubmitGo()">发&ensp;&ensp;表</button>
 					<button v-on:click="submitGiveup()">放&ensp;&ensp;弃</button>
@@ -32,7 +32,7 @@
 					<button disabled="disabled">放&ensp;&ensp;弃</button>
 				</div>
 			</div>
-			<div id="editorSendingState">
+			<div v-bind:class="$style.editorSendingState">
 				{{sendState}}
 			</div>
 		</div>
@@ -122,9 +122,7 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	@import '../../../common/css/title.scss';
-	// 博客编辑器以及文章的样式
-	@import '../../../common/css/file.scss';
-	@import './editor.scss';
-</style>
+<style lang="scss" rel="text/css" src="../../../common/css/title.scss"></style>
+<!-- 博客编辑器以及文章的样式 -->
+<style lang="scss" rel="text/css" src="../../../common/css/file.scss"></style>
+<style lang="scss" rel="text/css" src="./editor.scss" module></style>

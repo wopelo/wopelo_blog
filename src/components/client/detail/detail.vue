@@ -1,19 +1,19 @@
 <template>
-	<div id="detailPage">
-		<div id="detailTitle">
+	<div v-bind:class="$style.detailPage">
+		<div v-bind:class="$style.detailTitle">
 			{{article.title}}
 		</div>
-		<div id="detailTpye">
+		<div v-bind:class="$style.detailTpye">
 			<span>标签：</span>
 			<span v-for="item in article.type">
 				{{item}}&ensp;
 			</span>
 		</div>
-		<div id="detailTime">
+		<div v-bind:class="$style.detailTime">
 			<span>{{article.date}}</span>
 			<span>评论({{article.comment}})</span>
 		</div>
-		<div id="detailContent" v-html="article.content"></div>
+		<div v-bind:class="$style.detailContent" v-html="article.content"></div>
 	</div>
 </template>
 
@@ -40,25 +40,25 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
+<style lang="scss" rel="text/css" module>
 	%title{
 		margin:8px 0 16px 0;
 		color:white;
 	}
-	#detailPage{
+	.detailPage{
 		padding:0 10px;
-		#detailTitle{
+		.detailTitle{
 			font-size:2em;
 			color:white;
 			margin:8px 0 8px 0;
 		}
-		#detailTpye,#detailTime{
+		.detailTpye,.detailTime{
 			display:inline-block;
 			margin-bottom:5px;
 			color:#c88326;
 			font-size:12px;
 		}
-		#detailContent{
+		.detailContent{
 			line-height:1.8;
 			color:white;
 			margin-top:15px;

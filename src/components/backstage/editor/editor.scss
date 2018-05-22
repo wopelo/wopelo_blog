@@ -1,10 +1,10 @@
 @charset "UTF-8";
-#editorElem{
+.editorElem{
 	height:500px;
 	padding:10px;
 	z-index:0 !important;
 }
-#typeMask{
+.typeMask{
 	position:fixed;
     top:0;
     left:0;
@@ -13,7 +13,7 @@
     background:rgba(0,0,0,0.5);
     z-index:20000;
 }
-#chooseType{
+.chooseType{
 	position:fixed;
     top:25%;
     left:0;
@@ -24,7 +24,7 @@
     height:auto;
     z-index:20001;
     background-color:white;
-    #editorTypeList{
+    .editorTypeList{
     	display:flex;
     	flex-wrap:wrap;
     	align-items:center;
@@ -42,7 +42,7 @@
 			}
 	    }
     }
-	#submitButton{
+	.submitButton{
 		text-align:center;
 		button{
 			width: 110px;
@@ -61,7 +61,7 @@
 			border:2px solid #fa9fa4;
 		}
 	}
-	#editorSendingState{
+	.editorSendingState{
 		text-align:center;
 		color:red;
 	}

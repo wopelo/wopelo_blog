@@ -1,14 +1,12 @@
 @charset "UTF-8";
-#aboutElem{
+.aboutElem{
 	height:500px;
 	padding:10px;
 }
-#title{
-	#aboutTilte{
-		font-size:18px;
-		font-family:Arial;
-		font-weight:bold;
-		color:#999;
-		line-height:40px;
-	}
+.aboutTilte{
+	font-size:18px;
+	font-family:Arial;
+	font-weight:bold;
+	color:#999;
+	line-height:40px;
 }

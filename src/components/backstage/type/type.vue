@@ -1,36 +1,36 @@
 <template>
 	<div>
-		<div id="typeList">
-			<div class="type" v-for="item in type" v-on:click="showDelete(item.name)">
-				<span class="name">{{item.name}}</span>
+		<div v-bind:class="$style.typeList">
+			<div v-bind:class="$style.type" v-for="item in type" v-on:click="showDelete(item.name)">
+				<span v-bind:class="$style.name">{{item.name}}</span>
 			</div>
-			<div class="type icon" v-on:click="Add=true">
+			<div v-bind:class="$style.type" v-on:click="Add=true">
 				<span class="iconfont icon-add1"></span>
 			</div>
 		</div>
-		<div v-show="Delete || Add" id="typeMask"></div>
-		<div v-show="Delete" class="typeBox">
-			<div class="boxContent">
-				<div class="contentTip">
+		<div v-show="Delete || Add" v-bind:class="$style.typeMask"></div>
+		<div v-show="Delete" v-bind:class="$style.typeBox">
+			<div v-bind:class="$style.boxContent">
+				<div v-bind:class="$style.contentTip">
 					确认删除类型 {{target}}
 				</div>
-				<div class="contentBtn">
+				<div v-bind:class="$style.contentBtn">
 					<button v-on:click="deleteType()">YES</button>
 					<button v-on:click="Delete=false">NO</button>
 				</div>
 			</div>
 		</div>
-		<div v-show="Add" class="typeBox">
-			<div class="boxContent">
-				<div class="contentTip">
+		<div v-show="Add" v-bind:class="$style.typeBox">
+			<div v-bind:class="$style.boxContent">
+				<div v-bind:class="$style.contentTip">
 					<input type="text" v-model="typeName" placeholder="新的类型">
 				</div>
-				<div class="contentBtn">
+				<div v-bind:class="$style.contentBtn">
 					<button v-on:click="addType()">添加</button>
 					<button v-on:click="Add=false">放弃</button>
 				</div>
 			</div>
-			<div id="Already" v-show="Already">
+			<div v-bind:class="Already" v-show="Already">
 				{{waring}}
 			</div>
 		</div>
@@ -106,6 +106,4 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	@import './type.scss';
-</style>
+<style lang="scss" rel="text/css" src="./type.scss" module></style>

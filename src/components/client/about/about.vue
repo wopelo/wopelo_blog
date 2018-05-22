@@ -1,9 +1,11 @@
 <template>
-  <div id="aboutMe" v-bind:class="backImg">
-  	<div id="aboutBack">
-  		<router-link to="/">Home</router-link>
-  	</div>
-  	<div v-html="article" id="articleContent"></div>
+  <div v-bind:class="backImg">
+	  <div v-bind:class="$style.aboutMe">
+	  	<div v-bind:class="$style.aboutBack">
+	  		<router-link to="/">Home</router-link>
+	  	</div>
+	  	<div v-html="article" v-bind:class="$style.articleContent"></div>
+	  </div>
   </div>
 </template>
 
@@ -26,16 +28,16 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	@import '../../../common/css/mixin.scss';
+<style lang="scss" rel="text/css" src="../../../common/css/mixin.scss"></style>
+<style lang="scss" rel="text/css" module>
 	%title{
 		margin:8px 0 16px 0;
 		color:white;
 	}
 
-	#aboutMe{
+	.aboutMe{
 		padding:0 0 50px 0;
-		#aboutBack{
+		.aboutBack{
 			position:relative;
 			margin:0 auto 20px auto;
 			max-width:600px;
@@ -56,7 +58,7 @@
 		    	border-bottom: 3px solid black;
 		    }
 		}
-		#articleContent{
+		.articleContent{
 			position:relative;
 			max-width:600px;
 			margin:0 auto;

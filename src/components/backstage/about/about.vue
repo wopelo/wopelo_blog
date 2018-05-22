@@ -2,7 +2,7 @@
 	<div>
 		<div id="title">
 			<div id="text">
-				<span id="aboutTilte">关于我</span>
+				<span v-bind:class="$style.aboutTilte">关于我</span>
 			</div>
 			<div id="operation">
 				<button v-on:click="submit()">提&ensp;&ensp;交</button>
@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<div id="aboutMenu"></div>
-		<div id="aboutElem"></div>
+		<div id="aboutElem" v-bind:class="$style.aboutElem"></div>
 	</div>
 </template>
 
@@ -62,9 +62,7 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	@import '../../../common/css/title.scss';
-	// 博客编辑器以及文章的样式
-	@import '../../../common/css/file.scss';
-	@import './backAbout.scss';
-</style>
+<style lang="scss" rel="text/css" src="../../../common/css/title.scss"></style>
+<!-- 博客编辑器以及文章的样式 -->
+<style lang="scss" rel="text/css" src="../../../common/css/file.scss"></style>
+<style lang="scss" rel="text/css" src="./backAbout.scss" module></style>

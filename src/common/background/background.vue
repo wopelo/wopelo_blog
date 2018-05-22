@@ -124,8 +124,9 @@
 	}
 </script>
 
+<style lang="scss" type="text/css" src="../css/mixin.scss"></style>
+
 <style lang="scss" rel="text/css">
-	@import '../css/mixin.scss';
 	#top-image{
 	  position:fixed;
 	  top:0;

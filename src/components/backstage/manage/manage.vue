@@ -1,30 +1,30 @@
 <template>
-	<div id="manage">
-		<div id="manageContent">
-			<div class="manage-list" v-for="item in list">
-				<div class="manage-title">
+	<div v-bind:class="$style.manage">
+		<div v-bind:class="$style.manageContent">
+			<div v-bind:class="$style.manageList" v-for="item in list">
+				<div v-bind:class="$style.manageTitle">
 					<span v-on:click="edBlog(item._id)">{{item.title}}</span>
 				</div>
-				<div class="manage-message">
+				<div v-bind:class="$style.manageMessage">
 					<span>{{item.date}} {{item.type}}</span>
-					<span class="iconfont icon-delete manage-delete" v-on:click="manageDelete(item._id,item.type)"></span>
+					<span class="iconfont icon-delete" v-bind:class="$style.manageDelete" v-on:click="manageDelete(item._id,item.type)"></span>
 				</div>
 			</div>
 		</div>
 
-		<div id="managePage">
-			<a class="pageButton" v-on:click="previous()">Previous</a>
-			<a class="pageButton" v-on:click="nextPage()">Next</a>
+		<div v-bind:class="$style.managePage">
+			<a v-bind:class="$style.pageButton" v-on:click="previous()">Previous</a>
+			<a v-bind:class="$style.pageButton" v-on:click="nextPage()">Next</a>
 		</div>
 
-		<div id="manage-curtain" v-show="alert"></div>
+		<div v-bind:class="$style.manageCurtain" v-show="alert"></div>
 
-		<div id="manage-alert" v-show="alert">
-			<div class="boxContent">
-				<div class="contentTip">
+		<div v-bind:class="$style.manageAlert" v-show="alert">
+			<div v-bind:class="$style.boxContent">
+				<div v-bind:class="$style.contentTip">
 					确认删除这篇文章？
 				</div>
-				<div class="contentBtn">
+				<div v-bind:class="$style.contentBtn">
 					<button v-on:click="deleteArticle()">YES</button>
 					<button v-on:click="alert=false">NO</button>
 				</div>
@@ -129,6 +129,4 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	@import './manage.scss';
-</style>
+<style lang="scss" rel="text/css" src="./manage.scss" module></style>

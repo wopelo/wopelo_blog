@@ -1,17 +1,17 @@
 <template>
-	<div id="auth">
+	<div v-bind:class="$style.auth">
 		<background></background>
-		<div id="content">
-			<div class="information">
+		<div v-bind:class="$style.content">
+			<div v-bind:class="$style.information">
 				<input type="text" placeholder="用户名" v-model="name">
 			</div>
-			<div class="information">
+			<div v-bind:class="$style.information">
 				<input type="password" placeholder="密码" v-model="password">
 			</div>
-			<div class="information">
+			<div v-bind:class="$style.information">
 				<button v-on:click="checkAuth">登录</button>
 			</div>
-			<div id="authError" v-show="authError">
+			<div v-bind:class="$style.authError" v-show="authError">
 				身份验证失败
 			</div>
 		</div>
@@ -56,13 +56,13 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	#auth{
+<style lang="scss" rel="text/css" module>
+	.auth{
 		div{
 			position:relative;
 			z-index:50;
 		}
-		#content{
+		.content{
 			position:fixed;
 			top:30%;
 			margin:0 auto;
@@ -102,7 +102,7 @@
 					background-color: #0096da;
 				}
 			}
-			#authError{
+			.authError{
 				font-size:16px;
 				color:red;
 				margin-top:10px;

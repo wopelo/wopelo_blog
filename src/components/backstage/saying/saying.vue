@@ -51,6 +51,4 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	@import '../../../common/css/title.scss';
-</style>
+<style lang="scss" rel="text/css" src="../../../common/css/title.scss"></style>

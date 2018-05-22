@@ -1,38 +1,40 @@
 <template>
-	<div id="navigation">
-		<div id="header">
-			<div id="brand">
-				<div id="font">WOPELO</div>
+	<div v-bind:class="$style.navigation">
+		<div v-bind:class="$style.header">
+			<div v-bind:class="$style.brand">
+				<div v-bind:class="$style.font">WOPELO</div>
 			</div>
 		</div>
-		<div id="list">
-			<div class="option">
+		<div v-bind:class="$style.list">
+			<div v-bind:class="$style.option">
 				<router-link to="/backstage/saying">修改一句话</router-link>
 			</div>
-			<div class="option">
+			<div v-bind:class="$style.option">
 				<router-link to="/backstage/blog">博客总览</router-link>
 			</div>
-			<div class="option">
+			<div v-bind:class="$style.option">
 				<router-link to="/backstage/type">类别管理</router-link>
 			</div>
-			<div class="option">
+			<div v-bind:class="$style.option">
 				<router-link to="/backstage/manage">管理博客</router-link>
 			</div>
-			<div class="option">
+			<div v-bind:class="$style.option">
 				<router-link to="/backstage/comment">管理评论</router-link>
 			</div>
-			<div class="option">
+			<div v-bind:class="$style.option">
 				<router-link to="/backstage/editor">发表博客</router-link>
 			</div>
-			<div class="option">
+			<div v-bind:class="$style.option">
 				<router-link to="/backstage/about">关于我</router-link>
 			</div>
-			<div class="option" id="top">
-				<a v-on:click="backTop">返回顶部</a>
+			<div v-bind:class="$style.top">
+				<div v-bind:class="$style.option">
+					<a v-on:click="backTop">返回顶部</a>
+				</div>
 			</div>
 		</div>
-		<div id="edit">
-			<div id="view">
+		<div v-bind:class="$style.edit">
+			<div v-bind:class="$style.view">
 				<router-view></router-view>
 			</div>
 		</div>
@@ -81,6 +83,4 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	@import './navigation.scss';
-</style>
+<style lang="scss" rel="text/css" src="./navigation.scss" module></style>

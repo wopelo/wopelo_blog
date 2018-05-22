@@ -1,6 +1,6 @@
 <template>
-	<div id="pandect">
-		<div class="viewList" v-for="item in type" v-on:click="typeList(item.name)">
+	<div v-bind:class="$style.pandect">
+		<div v-bind:class="$style.viewList" v-for="item in type" v-on:click="typeList(item.name)">
 			{{item.name}} : {{item.number}}篇
 		</div>
 	</div>
@@ -27,8 +27,8 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	#pandect{
+<style lang="scss" rel="text/css" module>
+	.pandect{
 		line-height:1.8;
 		.viewList{
 			padding:20px;
@@ -39,9 +39,9 @@
 			font-weight:400;
 			cursor: pointer;
 			transition: 0.5s;
-		}
-		.viewList:hover{
-			color: #f33;
+			&:hover{
+				color: #f33;
+			}
 		}
 	}
 </style>

@@ -1,6 +1,6 @@
 @charset "UTF-8";
-#wrapper{
-	#content{
+.wrapper{
+	.content{
 		div{
 			position:relative;
 			z-index:50;
@@ -13,7 +13,7 @@
 	    left: 0;
 		text-align:center;
 		color: white;
-		#name{
+		.name{
 			margin:12px 0;
 			h1{
 				font-weight: 700;
@@ -23,7 +23,7 @@
 				font-family: 华文新魏;
 			}
 		}
-		#saying{
+		.saying{
 			h2{
 				height:20px;
 				margin-bottom: 20px;
@@ -34,12 +34,12 @@
 			    line-height:20px;
 			}
 		}
-		#navigation{
+		.navigation{
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: center;
 			margin: 0 auto;
-			.index-router{
+			.indexRouter{
 				width: 100px;
 				margin: 10px;
 				padding: 5px;
@@ -48,21 +48,21 @@
 			    cursor: pointer;
 			    color: white;
 			    transition: 0.5s;
-			    .iconfont{
+			    :global(.iconfont){
 			    	display: block;
 					font-size: 60px;
 					box-shadow: 0 0 2px rgba(255, 255, 255, .8);
 					border-radius: 8px;
 					padding: 5px;
 			    }
-			    .index-message{
+			    .indexMessage{
 					display: block;
 				   	margin-top: 10px;
 				   	font-family: "Microsoft Yahei";
 			    }
-			}
-			.index-router:hover{
-				background: rgba(255,255,255,.1);
+			    &:hover{
+			    	background: rgba(255,255,255,.1);
+			    }
 			}
 		}
 	}

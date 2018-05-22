@@ -1,50 +1,50 @@
 <template>
-	<div id="wrapper">
+	<div v-bind:class="$style.wrapper">
 		<background></background>
-		<div id="content">
-			<div id="name">
+		<div v-bind:class="$style.content">
+			<div v-bind:class="$style.name">
 				<h1>Hello, I'm Wopelo</h1>
 			</div>
-			<div id="saying">
+			<div v-bind:class="$style.saying">
 				<h2>{{saying}}</h2>
 			</div>
-			<div id="navigation">
+			<div v-bind:class="$style.navigation">
 				<router-link to="/blog">
-					<div class="index-router">
+					<div v-bind:class="$style.indexRouter">
 						<span class="iconfont icon-ego-blog"></span>
-						<span class="index-message">
+						<span v-bind:class="$style.indexMessage">
 							Blog
 						</span>
 					</div>
 				</router-link>
 				<a href="http://blog.csdn.net/wopelo" target="_blank">
-					<div  class="index-router">
+					<div v-bind:class="$style.indexRouter">
 						<span class="iconfont icon-CN_csdnnet"></span>
-						<span class="index-message">
+						<span v-bind:class="$style.indexMessage">
 							CSDN
 						</span>
 					</div>
 				</a>
 				<a href="https://github.com/wopelo" target="_blank">
-					<div  class="index-router">
+					<div v-bind:class="$style.indexRouter">
 						<span class="iconfont icon-github"></span>
-						<span class="index-message">
+						<span v-bind:class="$style.indexMessage">
 							Github
 						</span>
 					</div>
 				</a>
 				<a href="https://www.zhihu.com/people/jiang-cheng-yuan-92-14/activities" target="_blank">
-					<div  class="index-router">
+					<div v-bind:class="$style.indexRouter">
 						<span class="iconfont icon-zhihu"></span>
-						<span class="index-message">
+						<span v-bind:class="$style.indexMessage">
 							知乎
 						</span>
 					</div>
 				</a>
 				<router-link to="/about">
-					<div  class="index-router">
+					<div v-bind:class="$style.indexRouter">
 						<span class="iconfont icon-aboutme"></span>
-						<span class="index-message">
+						<span v-bind:class="$style.indexMessage">
 							About me
 						</span>
 					</div>
@@ -93,7 +93,5 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	@import './index.scss';
-	@import '../../../../static/fonts/iconfont.css';
-</style>
+<style lang="scss" rel="text/css" src="./index.scss" module></style>
+<style type="text/css" rel="text/css" src="../../../../static/fonts/iconfont.css"></style>

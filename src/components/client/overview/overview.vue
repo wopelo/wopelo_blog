@@ -1,6 +1,6 @@
 <template>
-	<div id="overview">
-		<div class="viewList" v-for="item in type" v-on:click="typeList(item.name)">
+	<div v-bind:class="$style.overview">
+		<div v-bind:class="$style.viewList" v-for="item in type" v-on:click="typeList(item.name)">
 			{{item.name}} : {{item.number}}篇
 		</div>
 	</div>
@@ -27,8 +27,8 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	#overview{
+<style lang="scss" rel="text/css" module>
+	.overview{
 		line-height:1.8;
 		.viewList{
 			padding:20px;

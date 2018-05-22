@@ -82,9 +82,7 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	@import '../../../common/css/title.scss';
-	// 博客编辑器以及文章的样式
-	@import '../../../common/css/file.scss';
-	@import './edBlog.scss';
-</style>
+<style lang="scss" rel="text/css" src="../../../common/css/title.scss"></style>
+<!-- 博客编辑器以及文章的样式 -->
+<style lang="scss" rel="text/css" src="../../../common/css/file.scss"></style>
+<style lang="scss" rel="text/css" src="./edBlog.scss"></style>

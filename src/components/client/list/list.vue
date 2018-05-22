@@ -1,19 +1,19 @@
 <template>
-	<div id="blogList">
-		<div id="listContent">
-			<div class="listTerm" v-for="item in list" v-on:click="gotoDetail(item._id)">
-				<div class="listTerm-title">
+	<div v-bind:class="$style.blogList">
+		<div v-bind:class="$style.listContent">
+			<div v-bind:class="$style.listTerm" v-for="item in list" v-on:click="gotoDetail(item._id)">
+				<div v-bind:class="$style.listTermTitle">
 					{{item.title}}
 				</div>
-				<div class="listTerm-other">
+				<div v-bind:class="$style.listTermOther">
 					<span>{{item.date}} {{item.type}}</span>
 				</div>
 			</div>
 		</div>
 
-		<div id="pageControl">
-			<a class="pageButton" v-on:click="previous()">{{Previous}}</a>
-			<a class="pageButton" v-on:click="nextPage()">{{Next}}</a>
+		<div v-bind:class="$style.pageControl">
+			<a v-bind:class="$style.pageButton" v-on:click="previous()">{{Previous}}</a>
+			<a v-bind:class="$style.pageButton" v-on:click="nextPage()">{{Next}}</a>
 		</div>
 	</div>
 </template>
@@ -132,9 +132,9 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	#blogList{
-		#listContent{
+<style lang="scss" rel="text/css" module>
+	.blogList{
+		.listContent{
 			min-height: 90vh;
 			box-sizing: border-box;
 			padding-bottom: 40px;
@@ -144,7 +144,7 @@
 			padding:20px;
 			border-bottom:1px solid #e6e6e6;
 			cursor:pointer;
-			.listTerm-title{
+			.listTermTitle{
 				color:white;
 				font-size:18px;
     			font-weight:400;
@@ -155,7 +155,7 @@
     			white-space:nowrap;
     			transition: 0.5s;
 			}
-			.listTerm-other{
+			.listTermOther{
 				color:#999;
 				font-size:13px;
 				>div{
@@ -163,10 +163,10 @@
 				}
 			}
 		}
-		.listTerm:hover .listTerm-title{
+		.listTerm:hover .listTermTitle{
 			color: #f33;
 		}
-		#pageControl{
+		.pageControl{
 			display: flex;
 			justify-content: space-between;
 			align-items: center;

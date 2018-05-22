@@ -1,49 +1,49 @@
 @charset "UTF-8";
-#manage{
-	#manageContent{
+.manage{
+	.manageContent{
 		min-height: 90vh;
 		box-sizing: border-box;
 		padding-bottom: 40px;
-		.manage-list{
+		.manageList{
 			padding-bottom:5px;
 			border-bottom:1px solid #e6e6e6;
 			line-height:1.5;
 			transition: 0.5s;
-			.manage-title{
+			.manageTitle{
 				color:#444;
 				font-size:20px;
     			font-weight:400;
     			letter-spacing:1px;
 			}
-			.manage-title>span{
+			.manageTitle>span{
 				transition: 0.5s;
 				cursor: pointer;
 			}
-			.manage-title>span:hover{
+			.manageTitle>span:hover{
 				color: orange;
 			}
-			.manage-message{
+			.manageMessage{
 				color:#999;
 				font-size:13px;
 				>span{;
 					vertical-align:middle;
 				}
-				.manage-delete{
+				.manageDelete{
 					font-size:20px;
 					cursor:pointer;
 					float:right;
 					transition:0.5s;
-				}
-				.manage-delete:hover{
-					color:red;
+					&:hover{
+						color:red;
+					}
 				}
 			}
 		}
-		.manage-list:hover{
+		.manageList:hover{
 			background-color: #f6f6f6;
 		}
 	}
-	#managePage{
+	.managePage{
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -62,7 +62,7 @@
 			border-bottom-color: #333;
 		}
 	}
-	#manage-curtain{
+	.manageCurtain{
     	position:fixed;
         top:0;
         left:0;
@@ -71,7 +71,7 @@
         background:rgba(0,0,0,0.5);
         z-index:200;
 	}
-	#manage-alert{
+	.manageAlert{
 		position:fixed;
 	    top:25%;
 	    left:0;

@@ -1,20 +1,22 @@
 <template>
-  <div id="bolgPage" v-bind:class="backImg">
-  	<div id="visualAngle">
-  		<div id="angleContent">
-  			<div class="angleContent-option angleContent-option-type">
-  				<router-link to="/">Home</router-link>
-  			</div>
-  			<div class="angleContent-option angleContent-option-type">
-  				<router-link :to="{name:'list',query:{type:undefined}}">List</router-link>
-  			</div>
-  			<div class="angleContent-option angleContent-option-type">
-  				<router-link to="/overview">Type</router-link>
+  <div v-bind:class="backImg">
+  	<div v-bind:class="$style.bolgPage">
+  		<div v-bind:class="$style.visualAngle">
+  			<div v-bind:class="$style.angleContent">
+  				<div class="angleContent-option angleContent-option-type">
+  					<router-link to="/">Home</router-link>
+  				</div>
+  				<div class="angleContent-option angleContent-option-type">
+  					<router-link :to="{name:'list',query:{type:undefined}}">List</router-link>
+  				</div>
+  				<div class="angleContent-option angleContent-option-type">
+  					<router-link to="/overview">Type</router-link>
+  				</div>
   			</div>
   		</div>
-  	</div>
-  	<div id="bolgPage-content">
-  		<router-view></router-view>
+  		<div v-bind:class="$style.bolgPageContent">
+  			<router-view></router-view>
+  		</div>
   	</div>
   </div>
 </template>
@@ -34,28 +36,28 @@
 	}
 </script>
 
-<style lang="scss" rel="text/css">
-	@import '../../../common/css/mixin.scss';
-	#bolgPage{
+<style lang="scss" rel="text/css" src="../../../common/css/mixin.scss"></style>
+<style lang="scss" rel="text/css" module>
+	.bolgPage{
 		min-height:100vh;
 		overflow:auto;
-		#visualAngle{
+		.visualAngle{
 			position:relative;
 			width:100%;
 			height:50px;
 			background:transparent;
 			z-index:100;
-			#angleContent{
+			.angleContent{
 				display:flex;
 				max-width:1000px;
 				height:100%;
 				margin:0 auto;
-				.angleContent-option{
+				:global(.angleContent-option){
 					padding:0 20px;
 					color:#1a1a1a;
 					line-height:50px;
 				}
-				.angleContent-option-type{
+				:global(.angleContent-option-type){
 					cursor:pointer;
 					a{
 						display:block;
@@ -66,19 +68,19 @@
 						font-style: italic;
 						border-bottom: 3px solid transparent;
 					}
-					.router-link-exact-active{
+					:global(.router-link-exact-active){
 						color:#f33;
 					}
-				}
-				.angleContent-option-type:hover{
-					a{
-						color:black;
-						border-bottom-color: black;
+					&:hover{
+						a{
+							color:black;
+							border-bottom-color: black;
+						}
 					}
 				}
 			}
 		}
-		#bolgPage-content{
+		.bolgPageContent{
 			padding:0 0 10px 0;
 			max-width:1000px;
 			margin:0 auto;
