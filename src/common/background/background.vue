@@ -12,8 +12,20 @@
 			}
 		},
 		created(){
-			let pos = Math.floor(Math.random()*5);
 			let str = 'abcde';
+			// 图片预加载
+			let imgLoad = sessionStorage.getItem("imgLoad");
+			// 如果没有进行过预加载
+			if(!imgLoad){
+				let imgSrc = new Array(5);
+				for(let i =0; i< str.length ;i++) {
+		            imgSrc[i] = new Image();
+		            imgSrc[i].src = '/static/image/bg_' + str[i] + '.jpg';
+		        }
+		        sessionStorage.setItem("imgLoad","true");
+			}
+			// 选择背景
+			let pos = Math.floor(Math.random()*5);
 			this.backImg = 'bg_' + str[pos];
 		},
 		mounted(){
@@ -22,105 +34,142 @@
 	}
 
 	function background(){
-		(function($){
-		  $.iosParallax = function(el, options){
-		    // To avoid scope issues, use 'base' instead of 'this'
-		    // to reference this class from internal events and functions.
-		    var base = this;
+		(function ($) {
+		  $.fn.circleMagic = function (options) {
 
-		    // Access to jQuery and DOM versions of element
-		    base.$el = $(el);
-		    base.el = el;
+		    var width, height, canvas, ctx, animateHeader = true;
+		    var circles = [];
 
-		    // Add a reverse reference to the DOM object
-		    base.$el.data("iosParallax", base);
+		    var settings = $.extend({
+		      color: 'rgba(255,255,255,.5)',
+		      radius: 10,
+		      density: 0.3,
+		      clearOffset: 0.2
+		    }, options);
 
-		    var centerCoordinates = {x: 0, y: 0};
-		    var targetCoordinates = {x: 0, y: 0};
-		    var transitionCoordinates = {x: 0, y: 0};
+		    //  Main
 
-		    function getBackgroundImageUrl(){
-		      var backgroundImage = base.$el.css('background-image').match(/url\(.*\)/ig);
-		      if ( ! backgroundImage || backgroundImage.length < 1) {
-		        throw 'No background image found';
+		    var container = this['0'];
+		    initContainer();
+		    addListeners();
+
+		    function initContainer() {
+		      width = container.offsetWidth;
+		      height = container.offsetHeight;
+
+		      //  create canvas element
+
+		      initCanvas();
+		      canvas = document.getElementById('canvas');
+		      canvas.width = width;
+		      canvas.height = height;
+		      ctx = canvas.getContext('2d');
+
+		      //  create circles
+		      for (var x = 0; x < width * settings.density; x++) {
+		        var c = new Circle();
+		        circles.push(c);
 		      }
-		      return backgroundImage[0].replace(/url\(|'|"|'|"|\)$/ig, "");
+		      animate();
 		    }
 
-		    function getBackgroundImageSize(){
-		      var img = new Image;
-		      img.src = getBackgroundImageUrl();
-		      return {width: img.width, height: img.height};
+		    //Init canvas element
+		    function initCanvas() {
+		      var canvasElement = document.createElement('canvas');
+		      canvasElement.id = 'canvas';
+		      container.appendChild(canvasElement);
+		      canvasElement.parentElement.style.overflow = 'hidden';
+
 		    }
 
-		    function setCenterCoordinates(){
-		      var bgImgSize = getBackgroundImageSize();
-		      centerCoordinates.x = -1 * Math.abs(bgImgSize.width - base.$el.width()) / 2;
-		      centerCoordinates.y = -1 * Math.abs(bgImgSize.height - base.$el.height()) / 2;
-		      targetCoordinates.x = centerCoordinates.x;
-		      targetCoordinates.y = centerCoordinates.y;
-		      transitionCoordinates.x = centerCoordinates.x;
-		      transitionCoordinates.y = centerCoordinates.y;
+		    // Event handling
+		    function addListeners() {
+		      window.addEventListener('scroll', scrollCheck, false);
+		      window.addEventListener('resize', resize, false);
 		    }
 
-		    function bindEvents(){
-		      base.$el.mousemove(function(e){
-		        var width = base.options.movementFactor / base.$el.width();
-		        var height = base.options.movementFactor / base.$el.height();
-		        var cursorX = e.pageX - ($(window).width() / 2);
-		        var cursorY = e.pageY - ($(window).height() / 2);
-		        targetCoordinates.x = width * cursorX * -1 + centerCoordinates.x;
-		        targetCoordinates.y = height * cursorY * -1 + centerCoordinates.y;
-		      });
+		    function scrollCheck() {
+		      if (document.body.scrollTop > height) {
+		        animateHeader = false;
+		      }
+		      else {
+		        animateHeader = true;
+		      }
+		    }
 
-		      // Slowly converge the background image position to the target coordinates in 60 FPS
-		      var loop = setInterval(function(){
-		        transitionCoordinates.x += ((targetCoordinates.x - transitionCoordinates.x) / base.options.dampenFactor);
-		        transitionCoordinates.y += ((targetCoordinates.y - transitionCoordinates.y) / base.options.dampenFactor);
-		        base.$el.css("background-position", transitionCoordinates.x+"px "+transitionCoordinates.y+"px");
-		      }, 16);
+		    function resize() {
+		      width = container.clientWidth;
+		      height = container.clientHeight;
+		      container.height = height + 'px';
+		      canvas.width = width;
+		      canvas.height = height;
+		    }
 
-		      $(window).resize(function(){
-		        // Re-center the image
-		        setCenterCoordinates();
-		      });
+		    function animate() {
+		      if (animateHeader) {
+		        ctx.clearRect(0, 0, width, height);
+		        for (var i in circles) {
+		          circles[i].draw();
+		        }
+		      }
+		      requestAnimationFrame(animate);
+		    }
 
-		      // There's a problem with getting image height and width when the image isn't loaded.
-		      var img = new Image;
-		      img.src = getBackgroundImageUrl();
-		      $(img).load(function(){
-		        setCenterCoordinates();
-		      });
-		    };
+		    function randomColor() {
+		      var r = Math.floor(Math.random() * 255);
+		      var g = Math.floor(Math.random() * 255);
+		      var b = Math.floor(Math.random() * 255);
+		      var alpha = Math.random().toPrecision(2);
+		      return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+		    }
 
-		    base.init = function(){
-		      base.options = $.extend({}, $.iosParallax.defaultOptions, options);
-		      bindEvents();
-		    };
+		    //  Canvas manipulation
 
-		    base.init();
-		  };
+		    function Circle() {
+		      var that = this;
 
-		  $.iosParallax.defaultOptions = {
-		    // How fast the background moves
-		    movementFactor: 50,
-		    // How much to dampen the movement (higher is slower)
-		    dampenFactor: 36
-		  };
+		      // constructor
+		      (function () {
+		        that.pos = {};
+		        init();
+		      })();
 
-		  $.fn.iosParallax = function(options){
-		    return this.each(function(){
-		      (new $.iosParallax(this, options));
-		    });
-		  };
+		      function init() {
+		        that.pos.x = Math.random() * width;
+		        that.pos.y = height + Math.random() * 100;
+		        that.alpha = 0.1 + Math.random() * settings.clearOffset;
+		        that.scale = 0.1 + Math.random() * 0.3;
+		        that.speed = Math.random();
+		        if (settings.color === 'random') {
+		          that.color = randomColor();
+		        }
+		        else {
+		          that.color = settings.color;
+		        }
+		      }
 
+		      this.draw = function () {
+		        if (that.alpha <= 0) {
+		          init();
+		        }
+		        that.pos.y -= that.speed;
+		        that.alpha -= 0.0005;
+		        ctx.beginPath();
+		        ctx.arc(that.pos.x, that.pos.y, that.scale * settings.radius, 0, 2 * Math.PI, false);
+		        ctx.fillStyle = that.color;
+		        ctx.fill();
+		        ctx.closePath();
+		      };
+		    }
+		  }
 		})($);
 
-        $(document).ready(function() {
-          $('#top-image').iosParallax({
-            movementFactor: 50
-          });
-        });
+		$('#top-image').circleMagic({
+		  radius: 30,
+		  density: .02,
+		  color: 'rgba(255,255,255,.4)',
+		  clearOffset: .2
+		});
 	}
 </script>
 

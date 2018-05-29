@@ -11,4 +11,20 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+
+  <script type="text/javascript">
+    function IEVersion() {
+      // 取得浏览器的userAgent字符串
+      var userAgent = navigator.userAgent; 
+      // 判断是否为ie<11浏览器
+      var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1;
+      if(isIE){
+        return true;
+      }
+      return false;
+    }
+    if(IEVersion()){
+      document.getElementById("app").innerHTML = '看样子你需要一款更新的浏览器>_<至少得是IE11>_<'
+    }
+  </script>
 </html>
