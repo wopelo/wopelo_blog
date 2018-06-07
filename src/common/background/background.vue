@@ -1,5 +1,11 @@
 <template>
-	<div id="top-image" v-bind:class="backImg"></div>
+	<div id="top-image">
+		<div class="image-content bg_a" v-show="backImg === 0"></div>
+		<div class="image-content bg_b" v-show="backImg === 1"></div>
+		<div class="image-content bg_c" v-show="backImg === 2"></div>
+		<div class="image-content bg_d" v-show="backImg === 3"></div>
+		<div class="image-content bg_e" v-show="backImg === 4"></div>
+	</div>
 </template>
 
 <script>
@@ -8,7 +14,7 @@
 	export default {
 		data(){
 			return {
-				backImg: ''
+				backImg: 0
 			}
 		},
 		created(){
@@ -19,14 +25,23 @@
 			if(!imgLoad){
 				let imgSrc = new Array(5);
 				for(let i =0; i< str.length ;i++) {
-		            imgSrc[i] = new Image();
-		            imgSrc[i].src = '/static/image/bg_' + str[i] + '.jpg';
+					imgSrc[i] = new Promise((resolve, reject) => {
+						let img = new Image();
+						img.src = '/static/image/bg_' + str[i] + '.jpg';
+						img.onload = function(){
+							resolve(i);
+						}
+					});
 		        }
-		        sessionStorage.setItem("imgLoad","true");
+		        // sessionStorage.setItem("imgLoad","true");
+		        let race = Promise.race(imgSrc);
+		        race.then((num) => {
+		        	console.log(num);
+		        });
 			}
 			// 选择背景
-			let pos = Math.floor(Math.random()*5);
-			this.backImg = 'bg_' + str[pos];
+			// let pos = Math.floor(Math.random()*5);
+			// this.backImg = pos;
 		},
 		mounted(){
 			 background()
@@ -182,5 +197,12 @@
 	  width:100vw;
 	  z-index:0;
 	  height:100vh;
+	}
+
+	.image-content{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
 	}
 </style>
