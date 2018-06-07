@@ -18,30 +18,8 @@
 			}
 		},
 		created(){
-			let str = 'abcde';
-			// 图片预加载
-			let imgLoad = sessionStorage.getItem("imgLoad");
-			// 如果没有进行过预加载
-			if(!imgLoad){
-				let imgSrc = new Array(5);
-				for(let i =0; i< str.length ;i++) {
-					imgSrc[i] = new Promise((resolve, reject) => {
-						let img = new Image();
-						img.src = '/static/image/bg_' + str[i] + '.jpg';
-						img.onload = function(){
-							resolve(i);
-						}
-					});
-		        }
-		        // sessionStorage.setItem("imgLoad","true");
-		        let race = Promise.race(imgSrc);
-		        race.then((num) => {
-		        	console.log(num);
-		        });
-			}
-			// 选择背景
-			// let pos = Math.floor(Math.random()*5);
-			// this.backImg = pos;
+        let pos = Math.floor(Math.random()*5);
+        this.backImg = pos;
 		},
 		mounted(){
 			 background()
