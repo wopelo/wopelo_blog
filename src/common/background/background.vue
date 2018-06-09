@@ -18,8 +18,8 @@
 			}
 		},
 		created(){
-        let pos = Math.floor(Math.random()*5);
-        this.backImg = pos;
+	        let pos = Math.floor(Math.random()*5);
+	        this.backImg = pos;
 		},
 		mounted(){
 			 background()
