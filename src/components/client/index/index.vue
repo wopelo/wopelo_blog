@@ -51,6 +51,9 @@
 				</router-link>
 			</div>
 		</div>
+    <div v-bind:class="$style.record">
+      <a href="http://www.beian.miit.gov.cn" target="_blank">粤ICP备20008508</a>
+    </div>
 	</div>
 </template>
 
@@ -70,25 +73,19 @@
 		},
 		methods:{
 			cookieSaying(){
-				let haveCookie = document.cookie.indexOf('saying' + '=');
-				function choose(str){
-					let arr = str.split(/\@/g);
-					let length = arr.length;
-					let pos = Math.floor(Math.random()*length);
-					return arr[pos];
-				}
-				if(haveCookie < 0){
-					this.$axios.get("/api/saying").then(res=>{
-						console.log(res.data)
-					  	this.saying = choose(res.data.saying);
-					  	let exdate = new Date()
-					  	exdate.setDate(exdate.getDate() + 7)
-					  	document.cookie = 'saying' + "=" + res.data.saying + ";expires="+exdate.toUTCString();
-					});
-				}else{
-					this.saying = choose(document.cookie.split("=")[1]);
-				}
-			}
+				this.$axios.get("/api/saying").then(res=>{
+          this.saying = this.choose(res.data.saying);
+          let exdate = new Date()
+          exdate.setDate(exdate.getDate() + 7)
+          document.cookie = 'saying' + "=" + res.data.saying + ";expires="+exdate.toUTCString();
+        });
+      },
+      choose(str){
+        let arr = str.split(/\@/g);
+        let length = arr.length;
+        let pos = Math.floor(Math.random()*length);
+        return arr[pos];
+      }
 		}
 	}
 </script>
