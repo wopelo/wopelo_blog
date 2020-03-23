@@ -17,7 +17,10 @@
 		<div v-show="showType" v-bind:class="$style.typeMask"></div>
 		<div v-show="showType" v-bind:class="$style.chooseType">
 			<div v-bind:class="$style.editorTypeList">
-				<div  v-bind:class="$style.type" v-for="item in typeList">
+				<div
+          v-bind:class="$style.type"
+          v-for="(item, index) in typeList"
+          :key="index">
 					<input type="checkbox" name="typeItem" v-bind:value="item.name" v-bind:id="item.name" v-on:click="itemChecked(item)">
 					<label v-bind:for="item.name">{{item.name}}</label>
 				</div>

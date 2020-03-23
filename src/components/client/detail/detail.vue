@@ -5,7 +5,7 @@
 		</div>
 		<div v-bind:class="$style.detailTpye">
 			<span>标签：</span>
-			<span v-for="item in article.type">
+			<span v-for="(item, index) in article.type" :key="index">
 				{{item}}&ensp;
 			</span>
 		</div>

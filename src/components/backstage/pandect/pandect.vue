@@ -1,6 +1,10 @@
 <template>
 	<div v-bind:class="$style.pandect">
-		<div v-bind:class="$style.viewList" v-for="item in type" v-on:click="typeList(item.name)">
+		<div
+      v-bind:class="$style.viewList"
+      v-for="(item, index) in type"
+      :key="index"
+      v-on:click="typeList(item.name)">
 			{{item.name}} : {{item.number}}篇
 		</div>
 	</div>

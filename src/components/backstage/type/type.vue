@@ -1,7 +1,11 @@
 <template>
 	<div>
 		<div v-bind:class="$style.typeList">
-			<div v-bind:class="$style.type" v-for="item in type" v-on:click="showDelete(item.name)">
+			<div
+        v-bind:class="$style.type"
+        v-for="(item, index) in type"
+        :key="index"
+        v-on:click="showDelete(item.name)">
 				<span v-bind:class="$style.name">{{item.name}}</span>
 			</div>
 			<div v-bind:class="$style.type" v-on:click="Add=true">

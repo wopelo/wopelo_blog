@@ -1,7 +1,11 @@
 <template>
 	<div v-bind:class="$style.blogList">
 		<div v-bind:class="$style.listContent">
-			<div v-bind:class="$style.listTerm" v-for="item in list" v-on:click="gotoDetail(item._id)">
+			<div
+        v-bind:class="$style.listTerm"
+        v-for="(item, index) in list"
+        :key="index"
+        v-on:click="gotoDetail(item._id)">
 				<div v-bind:class="$style.listTermTitle">
 					{{item.title}}
 				</div>
