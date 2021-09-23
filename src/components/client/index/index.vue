@@ -52,7 +52,7 @@
 			</div>
 		</div>
     <div v-bind:class="$style.record">
-      <a href="http://www.beian.miit.gov.cn" target="_blank">粤ICP备20008508</a>
+      <a href="http://beian.miit.gov.cn" target="_blank">粤ICP备20008508号</a>
     </div>
 	</div>
 </template>
