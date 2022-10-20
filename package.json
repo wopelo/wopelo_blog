@@ -36,7 +36,7 @@
     "koa-body": "^2.5.0",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
-    "mongoose": "^4.9.0",
+    "mongoose": "^4.13.21",
     "node-notifier": "^5.1.2",
     "node-sass": "^4.7.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
